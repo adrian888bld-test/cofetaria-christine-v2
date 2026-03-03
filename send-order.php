@@ -1,18 +1,28 @@
 <?php
 header('Content-Type: application/json; charset=UTF-8');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  http_response_code(405);
-  echo json_encode(['ok' => false, 'error' => 'Method not allowed']);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/phpmailer/src/PHPMailer.php';
+require __DIR__ . '/phpmailer/src/SMTP.php';
+require __DIR__ . '/phpmailer/src/Exception.php';
+
+function respond($ok, $extra = [], $code = 200) {
+  http_response_code($code);
+  echo json_encode(array_merge(['ok' => $ok], $extra), JSON_UNESCAPED_UNICODE);
   exit;
 }
 
-// DESTINATAR TEST
-$to   = 'test@cofetaria-christine.ro';
-$from = 'test@cofetaria-christine.ro';
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  respond(false, ['error' => 'Method not allowed'], 405);
+}
 
-function clean($v){ return trim(str_replace(["\r","\n"], ' ', (string)$v)); }
+function clean($v) {
+  return trim(str_replace(["\r","\n"], ' ', (string)$v));
+}
 
+// Fields
 $nume       = clean($_POST['nume'] ?? '');
 $telefon    = clean($_POST['telefon'] ?? '');
 $eveniment  = clean($_POST['eveniment'] ?? '');
@@ -22,36 +32,52 @@ $nrPersoane = clean($_POST['nrPersoane'] ?? '');
 $platou     = clean($_POST['platouOneBite'] ?? '');
 $mesaj      = trim((string)($_POST['mesaj'] ?? ''));
 
-if ($nume === '' || $telefon === '' || $eveniment === '' || $data === '' || $mesaj === '') {
-  http_response_code(400);
-  echo json_encode(['ok' => false, 'error' => 'Câmpuri lipsă']);
-  exit;
+// UI-friendly errors
+$errors = [];
+if ($nume === '')      $errors['nume'] = 'Te rugăm să completezi acest câmp.';
+if ($telefon === '')   $errors['telefon'] = 'Te rugăm să completezi acest câmp.';
+if ($eveniment === '') $errors['eveniment'] = 'Te rugăm să completezi acest câmp.';
+if ($data === '')      $errors['data'] = 'Te rugăm să completezi acest câmp.';
+if ($mesaj === '')     $errors['mesaj'] = 'Te rugăm să completezi acest câmp.';
+
+if ($errors) {
+  respond(false, ['errors' => $errors], 400);
 }
 
-$subject = "TEST | Comandă tort - {$eveniment} - {$nume}";
+$mail = new PHPMailer(true);
 
-$body =
-"Solicitare nouă (TEST) - Comandă tort\n"
-."============================\n"
-."Nume: {$nume}\n"
-."Telefon: {$telefon}\n"
-."Tip eveniment: {$eveniment}\n"
-."Data evenimentului: {$data}\n\n"
-."Tip tort: {$tipTort}\n"
-."Nr persoane: {$nrPersoane}\n"
-."Platou OneBite: {$platou}\n\n"
-."Mesaj / Detalii:\n{$mesaj}\n";
+try {
+  $mail->isSMTP();
+  $mail->Host       = 'mail.cofetaria-christine.ro';
+  $mail->SMTPAuth   = true;
+  $mail->Username   = 'test@cofetaria-christine.ro';
+  $mail->Password   = 'T)x[RwqWWwT^uKG6'; // <- pune parola reală
+  $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL
+  $mail->Port       = 465;
 
-$headers = [];
-$headers[] = "MIME-Version: 1.0";
-$headers[] = "Content-Type: text/plain; charset=UTF-8";
-$headers[] = "From: Cofetăria Christine (TEST) <{$from}>";
+  $mail->CharSet = 'UTF-8';
 
-$ok = mail($to, $subject, $body, implode("\r\n", $headers));
+  $mail->setFrom('test@cofetaria-christine.ro', 'Cofetăria Christine (TEST)');
+  $mail->addAddress('test@cofetaria-christine.ro');
 
-if ($ok) {
-  echo json_encode(['ok' => true, 'redirect' => 'multumim.html']);
-} else {
-  http_response_code(500);
-  echo json_encode(['ok' => false, 'error' => 'mail() a eșuat']);
+  $mail->Subject = "TEST | Comandă tort - {$eveniment} - {$nume}";
+
+  $mail->Body =
+    "Solicitare nouă (TEST)\n"
+    ."=====================\n"
+    ."Nume: {$nume}\n"
+    ."Telefon: {$telefon}\n"
+    ."Eveniment: {$eveniment}\n"
+    ."Data: {$data}\n\n"
+    ."Tip tort: {$tipTort}\n"
+    ."Nr persoane: {$nrPersoane}\n"
+    ."Platou OneBite: {$platou}\n\n"
+    ."Mesaj:\n{$mesaj}\n";
+
+  $mail->send();
+
+  respond(true);
+
+} catch (Exception $e) {
+  respond(false, ['error' => $mail->ErrorInfo], 500);
 }
