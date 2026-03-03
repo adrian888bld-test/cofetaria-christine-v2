@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Formular Aniversare - Cofetăria Christine</title>
+</head>
+<body>
+
+<h2>Comandă Tort Aniversare</h2>
+
+<form id="formular-eveniment">
+
+  <!-- Tip eveniment -->
+  <label>Tip eveniment *</label><br>
+  <select id="tipEveniment" required>
+    <option value="" selected disabled>Alege tipul evenimentului</option>
+    <option value="aniversare">Aniversare</option>
+    <option value="nunta">Nuntă</option>
+    <option value="botez">Botez</option>
+    <option value="corporate">Corporate</option>
+  </select>
+
+  <!-- Sectiune Aniversare -->
+  <div id="sectiuneAniversare" style="display:none; margin-top:15px;">
+
+    <br>
+    <label>Tip tort *</label><br>
+    <select id="tipTort">
+      <option value="" selected disabled>Alege tipul tortului</option>
+      <option>Trois Chocolats</option>
+      <option>Criollo</option>
+      <option>Framboise</option>
+      <option>Symphonie</option>
+      <option>Pralin</option>
+      <option>Rubis</option>
+      <option>Petit ball</option>
+      <option>Passion</option>
+      <option>Truffe</option>
+      <option>Fraisier</option>
+      <option>Mojo</option>
+      <option>Haluka</option>
+      <option>Opera</option>
+      <option>Bisous</option>
+      <option>L'Amandine</option>
+    </select>
+
+    <br><br>
+    <label>Număr persoane *</label><br>
+    <input type="number" id="nrPersoane" min="1" placeholder="Ex: 10">
+
+  </div>
+
+  <br><br>
+  <label>Detalii *</label><br>
+  <textarea rows="5" required>Ora ridicării din magazin:
+Mesaj pe tort:</textarea>
+
+  <br><br>
+  <button type="submit">Trimite</button>
+
+</form>
+
+<script>
+  const tipEveniment = document.getElementById("tipEveniment");
+  const sectiuneAniversare = document.getElementById("sectiuneAniversare");
+  const tipTort = document.getElementById("tipTort");
+  const nrPersoane = document.getElementById("nrPersoane");
+
+  tipEveniment.addEventListener("change", function () {
+    if (this.value === "aniversare") {
+      sectiuneAniversare.style.display = "block";
+      tipTort.required = true;
+      nrPersoane.required = true;
+    } else {
+      sectiuneAniversare.style.display = "none";
+      tipTort.required = false;
+      nrPersoane.required = false;
+      tipTort.selectedIndex = 0;
+      nrPersoane.value = "";
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Evenimente — Cofetăria Christine</title>
+    <meta name="description"
+        content="Candy bar, tort nuntă și tort botez — Cofetăria Christine, București. Degustare, livrare și montaj." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="premium-style.css" />
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header__inner header__inner--split">
+
+            <!-- LEFT NAV (acum cu CTA) -->
+            <nav class="nav nav--desktop nav--left" aria-label="Navigație principală stânga">
+                <a class="nav__link nav__link--cta" href="comanda-tort.html">Comandă tort</a>
+                <a class="nav__link" href="produse.html">Produse</a>
+                <a class="nav__link" href="evenimente.html">Evenimente</a>
+            </nav>
+
+            <!-- LOGO -->
+            <a class="brand brand--center" href="index.html" aria-label="Cofetăria Christine">
+                <img class="brand__logo" src="assets/img/logo.png" alt="Cofetăria Christine" />
+            </a>
+
+            <!-- RIGHT NAV -->
+            <nav class="nav nav--desktop nav--right" aria-label="Navigație secundară dreapta">
+                <a class="nav__link" href="despre-noi.html">Despre noi</a>
+                <a class="nav__link" href="blog.html">Blog</a>
+                <a class="nav__link" href="contact.html">Contact</a>
+            </nav>
+
+            <!-- Hamburger (mobil) — păstrezi exact ca înainte -->
+            <button class="menu-btn" type="button" aria-label="Deschide meniul" aria-controls="mobileMenu"
+                aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+        </div>
+
+        <!-- NAV mobil (dropdown) — lasă-l EXACT cum îl ai acum -->
+        <nav id="mobileMenu" class="nav-mobile" aria-label="Meniu mobil" hidden>
+            <div class="container nav-mobile__inner">
+                <a class="nav__link" href="index.html">Home</a>
+                <a class="nav__link" href="despre-noi.html">Despre noi</a>
+                <a class="nav__link" href="produse.html">Produse</a>
+                <a class="nav__link" href="evenimente.html">Evenimente</a>
+                <a class="nav__link" href="blog.html">Blog</a>
+                <a class="nav__link" href="contact.html">Contact</a>
+                <a class="nav__link nav__link--cta" href="comanda-tort.html">Comandă tort</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="section__head">
+                    <h1>Informații importante</h1>
+                    <p>Te rugăm să citești cu atenție detaliile de mai jos înainte de a plasa o comandă.</p>
+                </div>
+
+                <article class="post">
+
+                    <h2>1. Cum plasez o comandă?</h2>
+
+                    <h3>a. Comenzi telefonice</h3>
+                    <p>
+                        Sună la <strong>0747 724 045</strong>,
+                        <strong>
+                            <a href="tel:+40747724045" class="link-inline" onclick="gtag('event', 'apel_telefonic', {
+       event_category: 'contact',
+       event_label: 'telefon_food_category'
+     }); return true;">
+                                apel telefonic
+                            </a>
+                        </strong>
+                        sau
+                        <strong>
+                            <a href="https://wa.me/+40747724045?" class="link-inline" target="_blank" rel="noopener">
+                                WhatsApp
+                            </a>
+                        </strong>.
+                        Preluăm comenzi telefonice între orele <strong>09:00 – 17:00</strong>.
+                        În afara orelor menționate, vă rugăm să folosiți formularul de comandă sau să lăsați mesaj pe
+                        WhatsApp.
+                    </p>
+
+                    <h3>b. Comenzi online</h3>
+                    <ul>
+                        <li>Completez formularul și ofer toate detaliile solicitate.</li>
+                        <li>Trimit formularul.</li>
+                        <li>Aștept să fiu contactat de un reprezentant al cofetăriei. În caz contrar, voi apela
+                            telefonul cofetăriei.</li>
+                    </ul>
+
+                    <hr>
+
+                    <h2>2. Cum ajung la locație?</h2>
+                    <p>
+                        <strong>Adresă magazin:</strong> București – George Valentin Bibescu 49 – Sector 1
+                    </p>
+                    <p>
+                        <a href="https://waze.com/ul?q=George%20Valentin%20Bibescu%2049%20Bucuresti" target="_blank"
+                            rel="noopener" class="btn btn--small btn--ghost">
+                            Deschide cu Waze
+                        </a>
+                    </p>
+
+                    <hr>
+
+                    <h2>3. Livrări la domiciliu (flotă proprie)</h2>
+                    <p>
+                        Livrările se efectuează în limita disponibilității.
+                    </p>
+
+                    <h3>Tarife livrare:</h3>
+                    <ul>
+                        <li>0 – 5 km: 29 lei</li>
+                        <li>5.01 – 10 km: 47 lei</li>
+                        <li>10.01 – 15 km: 62 lei</li>
+                        <li>15.01 – 20 km: 75 lei</li>
+                        <li>Peste 20 km: tariful anterior + 3 lei/km</li>
+                    </ul>
+
+                    <ul>
+                        <li>Plată cash, card (în funcție de livrator) sau transfer bancar;</li>
+                        <li>Zone livrare: București și Ilfov (doar până la adresa imobilului);</li>
+                        <li>Duminica nu se efectuează livrări.</li>
+                    </ul>
+
+                    <p>
+                        <strong>Ziua de LUNI</strong> este destinată doar comenzilor cu livrare (în
+                        limita disponibilității)
+                        sau comenzilor cu ridicare din magazin între orele <strong>10:00 – 11:00</strong>.
+                        Comenzile pentru ziua de luni se pot plasa până în sâmbăta premergătoare, ora 14:00.
+                    </p>
+
+                    <hr>
+
+                    <h2>4. Ce trebuie să știm</h2>
+                    <ul>
+                        <li>
+                            Toate produsele conțin TVA 21%, sunt calculate la preț de laborator și NU includ transport,
+                            extra cutii, artificii, decoruri personalizate, desene, suporți de prezentare etc.
+                            Pentru acestea se percep taxe suplimentare.
+                        </li>
+                        <li>
+                            Torturile și platourile Cofetăriei Christine se produc doar la comandă,
+                            în funcție de disponibilitatea stocurilor săptămânale (nu se regăsesc în vitrină).
+                        </li>
+                        <li>
+                            Lucrăm cu ingrediente premium aduse din străinătate, astfel pot exista situații
+                            în care anumite torturi nu pot fi produse în timp util.
+                        </li>
+                        <li>
+                            Comanda se plasează cu minimum 24 de ore înainte de ridicare.
+                            Pentru anumite produse aflate în stocul săptămânal, primim comenzi de pe o zi pe alta.
+                        </li>
+                        <li>Comenzile se pot ridica din cofetărie începând cu ora 11:00.</li>
+                        <li>
+                            Torturile au decor unic, realizat în funcție de sezon. Pozele au titlu orientativ.
+                            Vă rugăm să nu insistați asupra unui decor anume.
+                        </li>
+                        <li>
+                            Torturile pot suporta text (ex: „La mulți ani!”) în funcție de dimensiunea produsului.
+                        </li>
+                        <li>
+                            Tartele cu fructe din Platoul MiniDoux pot fi cu zmeură sau căpșune,
+                            în funcție de disponibilitatea fructelor proaspete.
+                        </li>
+                    </ul>
+
+                    <hr>
+
+                    <h2>5. Bine de știut</h2>
+                    <p>
+                        Nu creăm torturi personalizate, nu modificăm rețetele, nu lucrăm cu marțipan sau pastă de zahăr
+                        și nu executăm torturi supraetajate.
+                    </p>
+
+                    <p>
+                        Poți comanda desenul care va anima tortul copilului tău.
+                        Descoperă
+                        <a href="produse.html#copii" class="link-inline">
+                            aici
+                        </a>
+                        portofoliul și oferta de preț.
+                    </p>
+
+                    <p>
+                        <a href="https://jurnalnutritional.ro/restaurant/6406daed0e2ca49d1d1c0c90/" target="_blank"
+                            rel="noopener" class="link-inline">
+                            Valori nutriționale și alergeni
+                        </a>
+                    </p>
+
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer--premium">
+        <div class="container">
+            <div class="footer__premium-inner">
+
+                <div class="footer__left">
+                    <div class="footer__copyright">
+                        Copyright © <span id="year"></span> Cofetăria Christine. Toate drepturile rezervate.
+                    </div>
+
+                    <div class="footer__links">
+                        <a href="politica-confidentialitate.html">Politica de confidențialitate</a>
+
+                        <a href="politica-cookies.html">Politica de cookies</a>
+
+                        <a href="https://reclamatiisal.anpc.ro" target="_blank" rel="noopener">
+                            ANPC – Soluționarea alternativă a litigiilor
+                        </a>
+
+                        <a href="https://consumer-redress.ec.europa.eu/site-relocation_en" target="_blank"
+                            rel="noopener">
+                            Soluționarea online a litigiilor
+                        </a>
+                        < <a href="https://jurnalnutritional.ro/restaurant/6406daed0e2ca49d1d1c0c90/" target="_blank"
+                            rel="noopener">
+                            Valori nutriționale
+                            </a>
+                    </div>
+                </div>
+
+                <!-- IMPORTANT: iconițele trebuie să fie AICI, ca frate al footer__left -->
+                <div class="footer__right" aria-label="Social media">
+                    <a href="https://instagram.com/cofetariachristine" target="_blank" rel="noopener"
+                        data-tip="Instagram" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                                d="M7.5 2.8h9A4.7 4.7 0 0 1 21.2 7.5v9A4.7 4.7 0 0 1 16.5 21.2h-9A4.7 4.7 0 0 1 2.8 16.5v-9A4.7 4.7 0 0 1 7.5 2.8Z"
+                                stroke="currentColor" stroke-width="1.8" />
+                            <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor"
+                                stroke-width="1.8" />
+                            <path d="M17.3 6.7h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                        </svg>
+                    </a>
+
+                    <a href="https://facebook.com/cofetariachristine" target="_blank" rel="noopener" data-tip="Facebook"
+                        aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                                d="M14 8.6V7.1c0-.9.6-1.1 1-1.1h1.9V3.2h-2.6c-2.9 0-3.6 2.2-3.6 3.6v1.8H8.9V12h1.8v8.8H14V12h2.6l.4-3.4H14Z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@cofetaria_christine?_r=1&_t=ZN-942uora95oE" target="_blank"
+                        rel="noopener" data-tip="TikTok" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                                d="M14 3v10.2a3.6 3.6 0 1 1-3-3.5V7.1a6.2 6.2 0 1 0 6 6.1V8.2c.9.7 2.1 1.2 3.4 1.3V6.6c-1.8-.2-3.2-1.6-3.4-3.6H14Z"
+                                fill="currentColor" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const header = document.querySelector(".header");
+            if (!header) return;
+
+            const toggleHeader = () => {
+                header.classList.toggle("header--scrolled", window.scrollY > 10);
+            };
+
+            toggleHeader(); // ca să se seteze corect și după refresh la mijlocul paginii
+            window.addEventListener("scroll", toggleHeader, { passive: true });
+        });
+    </script>
+</body>
+
+</html>

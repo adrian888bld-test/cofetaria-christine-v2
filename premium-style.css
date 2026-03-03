@@ -1,0 +1,1547 @@
+/* ==========================================================
+   Cofetăria Christine — premium-style.css (CURAT)
+   Premium modern 2026 + romantic elegant (Playfair + Inter)
+   ========================================================== */
+
+/* ========== TOKENS / VARIABLES ========== */
+:root {
+    /* Surfaces & stroke */
+    --surface: rgba(255, 255, 255, 0.78);
+    --surface-2: rgba(255, 255, 255, 0.58);
+    --stroke: rgba(28, 16, 10, 0.08);
+    --stroke-strong: rgba(28, 16, 10, 0.12);
+
+    /* Shadows & radius */
+    --shadow: 0 12px 34px rgba(16, 10, 6, 0.07);
+    --shadow-soft: 0 8px 22px rgba(16, 10, 6, 0.06);
+    --radius-lg: 22px;
+    --radius: 18px;
+    --radius-sm: 14px;
+
+    /* Header */
+    --header-surface: rgba(251, 250, 247, 0.72);
+    --header-stroke: rgba(60, 40, 28, 0.10);
+    --header-shadow: 0 10px 30px rgba(16, 10, 6, 0.08);
+
+    /* Brand colors */
+    --nav-text: #3b2a22;
+    --nav-muted: rgba(59, 42, 34, 0.78);
+
+    /* Gold accents */
+    --gold-soft: rgba(210, 162, 37, 0.32);
+    --gold-strong: rgba(210, 162, 37, 0.55);
+
+    /* Typography */
+    --desc-color: #6f6258;
+
+    /* Media sizes */
+    --card-img-h: 260px;
+    --card-img-h-mobile: 260px;
+}
+
+/* ========== TYPOGRAPHY ========== */
+body {
+    font-family: "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+}
+
+/* ========== CATEGORY / SECTION ========== */
+.category {
+    padding: clamp(28px, 4vw, 52px) 0;
+}
+
+.category .container {
+    border: 0 !important;
+    /* dacă exista un border vechi */
+}
+
+.category__head {
+    /* NU centrat: păstrăm natural și stabil */
+    max-width: none !important;
+    margin: 0 0 18px !important;
+    text-align: left !important;
+}
+
+.category__head h2 {
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+
+.category__head p {
+    opacity: 0.88;
+    line-height: 1.6;
+}
+
+/* Info important (buton PDF etc.) */
+.info-important {
+    display: flex;
+    justify-content: flex-start;
+    margin: 14px 0 22px;
+}
+
+.info-important .btn {
+    margin: 0;
+}
+
+/* ========== PRODUCTS GRID ========== */
+.products-grid {
+    gap: 18px !important;
+}
+
+/* ========== PRODUCT CARD (premium + aliniere perfectă) ========== */
+.product-card {
+    border: 0 !important;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    transform: translateY(0);
+    will-change: transform;
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 42px rgba(16, 10, 6, 0.10);
+}
+
+/* Media (poze uniforme) */
+.product-card__media {
+    border-bottom: 1px solid var(--stroke);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.product-card__media img {
+    display: block;
+    width: 100%;
+    height: var(--card-img-h);
+    object-fit: cover;
+    object-position: center;
+    transform: scale(1);
+    transition: transform .25s ease;
+}
+
+.product-card:hover .product-card__media img {
+    transform: scale(1.02);
+}
+
+/* Body: împinge meta jos, indiferent de lungimea descrierii */
+.product-card__body {
+    padding: 16px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-card__title {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--nav-text);
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+}
+
+.product-card__desc {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 15.5px;
+    line-height: 1.7;
+    color: var(--desc-color);
+    letter-spacing: 0;
+
+    margin: 0 0 12px;
+    opacity: 1;
+    /* folosim culoarea, nu opacitate generică */
+}
+
+/* Meta: stă jos mereu */
+.product-card__meta {
+    margin-top: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding-top: 10px;
+    border-top: 1px solid var(--stroke);
+}
+
+.price {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+}
+
+/* Badge: pill modern */
+.badge {
+    border: 1px solid rgba(210, 162, 37, 0.22) !important;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 12px;
+    line-height: 1;
+    white-space: nowrap;
+    opacity: 0.85;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .product-card {
+        border-radius: var(--radius);
+    }
+
+    .product-card__media img {
+        height: var(--card-img-h-mobile);
+    }
+}
+
+/* ========== BUTTONS — same film ========== */
+.btn {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-radius: 999px;
+    line-height: 1.1;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.btn--small {
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+.btn--ghost {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(210, 162, 37, 0.28);
+    box-shadow: none;
+}
+
+.btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(210, 162, 37, 0.42);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10);
+}
+
+.btn--order {
+    font-weight: 700;
+}
+
+.btn--info {
+    color: #4a2d22;
+}
+
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(210, 162, 37, 0.18);
+}
+
+/* ========== HEADER — premium modern 2026 ========== */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: var(--header-surface);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-bottom: 1px solid var(--header-stroke);
+    box-shadow: var(--header-shadow);
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 0;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand__logo {
+    height: 105px;
+    /* mai mare, dar încă elegant */
+    width: auto;
+    display: block;
+}
+
+/* Desktop nav */
+.nav--desktop {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.nav__link {
+    position: relative;
+    color: var(--nav-muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 10px;
+    border-radius: 999px;
+    transition: color .18s ease, background-color .18s ease, transform .18s ease;
+}
+
+.nav__link:hover {
+    color: var(--nav-text);
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.nav__link::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 6px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-strong), transparent);
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity .18s ease, transform .18s ease;
+}
+
+.nav__link:hover::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CTA */
+.nav__link--cta {
+    color: var(--nav-text);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid var(--gold-soft);
+    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.08);
+    font-weight: 600;
+}
+
+.nav__link--cta:hover {
+    background: rgba(255, 255, 255, 0.90);
+    border-color: var(--gold-strong);
+    transform: translateY(-1px);
+}
+
+/* Focus */
+.nav__link:focus-visible,
+.menu-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(210, 162, 37, 0.18);
+    border-radius: 999px;
+}
+
+/* Hamburger */
+.menu-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid rgba(60, 40, 28, 0.10);
+    background: rgba(255, 255, 255, 0.60);
+    display: none;
+    /* activăm pe mobil */
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06);
+}
+
+.menu-btn span {
+    display: block;
+    height: 2px;
+    width: 18px;
+    background: rgba(59, 42, 34, 0.85);
+    border-radius: 999px;
+}
+
+/* Mobile menu */
+.nav-mobile {
+    border-top: 1px solid var(--header-stroke);
+    background: rgba(251, 250, 247, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.nav-mobile__inner {
+    padding: 14px 0 18px;
+    display: grid;
+    gap: 8px;
+}
+
+.nav-mobile .nav__link {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.45);
+}
+
+.nav-mobile .nav__link--cta {
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+    .nav--desktop {
+        display: none;
+    }
+
+    .menu-btn {
+        display: inline-flex;
+    }
+
+    .brand__logo {
+        height: 72px;
+    }
+}
+
+/* ==========================================================
+   PREMIUM PACK — nav active + micro-anim + spacing + footer + scroll
+   Pune la FINAL în premium-style.css
+   ========================================================== */
+
+/* Smooth scroll (nu afectează stabilitatea) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ---------------------------
+   1) Active link în meniu
+   (se aplică când link-ul are clasa .is-active)
+   --------------------------- */
+.nav__link.is-active {
+    color: var(--nav-text);
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.nav__link.is-active::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Dacă active este CTA, îl păstrăm premium */
+.nav__link--cta.is-active {
+    background: rgba(255, 255, 255, 0.90);
+    border-color: var(--gold-strong);
+}
+
+/* Respectă preferințele de accesibilitate */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .product-card,
+    .btn,
+    .nav__link {
+        transition: none !important;
+    }
+}
+
+/* ---------------------------
+   3) Spacing vertical între secțiuni (editorial)
+   - se aplică pe secțiuni comune
+   --------------------------- */
+section {
+    padding-top: clamp(28px, 4vw, 52px);
+    padding-bottom: clamp(28px, 4vw, 52px);
+}
+
+/* Dacă folosești deja .category pentru secțiuni produse, păstrăm consistent */
+.category {
+    padding-top: clamp(28px, 4vw, 52px);
+    padding-bottom: clamp(28px, 4vw, 52px);
+}
+
+/* Titluri mai “editorial” în pagini */
+.page-title,
+.hero h1,
+main h1 {
+    letter-spacing: -0.02em;
+}
+
+/* ---------------------------
+   4) Footer mai premium (dacă ai .footer)
+   Nu rupe nimic; doar rafinează dacă există clasele.
+   --------------------------- */
+.footer {
+    border-top: 1px solid var(--stroke);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.footer .container {
+    padding-top: 26px;
+    padding-bottom: 26px;
+}
+
+.footer a {
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Social icons (dacă ai) */
+.footer .contact-social a,
+.footer .social a {
+    border-radius: 999px;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+
+.footer .contact-social a:hover,
+.footer .social a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10);
+}
+
+/* ---------------------------
+   5) Scroll “premium” — mic efect de hover deja ai,
+   aici doar facem header-ul un pic mai “tight” pe scroll (optional)
+   dacă vrei, îl activăm din JS cu .header--scrolled
+   --------------------------- */
+.header.header--scrolled {
+    background: rgba(251, 250, 247, 0.88);
+    box-shadow: 0 12px 34px rgba(16, 10, 6, 0.10);
+}
+
+/* CTA subtil mai “present” */
+.nav__link--cta {
+    box-shadow: 0 12px 26px rgba(16, 10, 6, 0.10);
+}
+
+/* =========================
+   FIX IMAGINI — umplu perfect cardul (fără bandă albă)
+   Pune acest bloc ULTIMUL în premium-style.css
+   ========================= */
+
+.product-card__media {
+    background: rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+}
+
+/* imaginea trebuie să aibă înălțime fixă + cover */
+.product-card__media img {
+    display: block;
+    width: 100% !important;
+    height: 210px !important;
+    /* desktop */
+    object-fit: cover !important;
+    object-position: center;
+    background: transparent !important;
+}
+
+@media (max-width: 640px) {
+    .product-card__media img {
+        height: 190px !important;
+        /* mobile */
+    }
+}
+
+/* =========================
+   FIX IMAGINI — umplu perfect cardul (fără bandă albă)
+   Pune acest bloc ULTIMUL în premium-style.css
+   ========================= */
+
+.product-card__media {
+    background: rgba(0, 0, 0, 0.02);
+    overflow: hidden;
+}
+
+/* imaginea trebuie să aibă înălțime fixă + cover */
+.product-card__media img {
+    display: block;
+    width: 100% !important;
+    height: 210px !important;
+    /* desktop */
+    object-fit: cover !important;
+    object-position: center;
+    background: transparent !important;
+}
+
+@media (max-width: 640px) {
+    .product-card__media img {
+        height: 190px !important;
+        /* mobile */
+    }
+}
+
+/* =========================================
+   FIX FINAL — elimină banda albă din media
+   (forțăm și containerul, nu doar imaginea)
+   ========================================= */
+
+.product-card__media {
+    height: var(--card-img-h) !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    aspect-ratio: auto !important;
+    /* dacă exista în style.css */
+    display: block !important;
+    /* dacă era flex */
+    line-height: 0 !important;
+    /* elimină spații “fantomă” */
+    overflow: hidden !important;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.product-card__media>img {
+    width: 100% !important;
+    height: 100% !important;
+    /* cheia: umple containerul */
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+@media (max-width: 640px) {
+    .product-card__media {
+        height: var(--card-img-h-mobile) !important;
+    }
+}
+
+/* =========================
+   MOBILE LITE — elimină efectele grele (iOS/Safari)
+   păstrează premium, fără “juvenil”
+   ========================= */
+
+@media (max-width: 980px) {
+
+    /* 1) Oprim blur-ul (cel mai “greu”) */
+    .header {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(251, 250, 247, 0.96) !important;
+    }
+
+    /* 2) Reducem umbrele mari (mai fluid pe telefon) */
+    .header {
+        box-shadow: 0 8px 18px rgba(16, 10, 6, 0.08) !important;
+    }
+
+    .product-card {
+        box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06) !important;
+    }
+
+    /* 3) Oprim “lift” / transform pe touch (nu are sens pe telefon) */
+    .product-card:hover {
+        transform: none !important;
+    }
+
+    .btn:hover {
+        transform: none !important;
+    }
+
+    .nav__link:hover {
+        background: transparent !important;
+    }
+
+    /* 4) Tranziții mai discrete */
+    .product-card,
+    .btn,
+    .nav__link {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 980px) {
+    body {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Active link fără JS */
+.nav__link[aria-current="page"] {
+    color: var(--nav-text);
+    background: rgba(255, 255, 255, 0.55);
+}
+
+.nav__link[aria-current="page"]::after {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav__link--cta[aria-current="page"] {
+    background: rgba(255, 255, 255, 0.90);
+    border-color: var(--gold-strong);
+}
+
+/* ==========================================================
+   FOOTER PREMIUM — editorial boutique
+   ========================================================== */
+
+.footer--premium {
+    border-top: 1px solid var(--stroke);
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.footer__premium-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 36px 0 28px;
+}
+
+/* ===== LEFT SIDE ===== */
+
+.footer__copyright {
+    font-size: 14px;
+    color: #6f6258;
+    margin-bottom: 12px;
+}
+
+/* ===== Desktop refinement ===== */
+@media (min-width: 1100px) {
+
+    .footer__premium-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* asta aliniază vertical */
+    }
+
+    .footer__links {
+        font-size: 12.5px;
+        /* puțin mai mic */
+        gap: 6px 14px;
+        /* mai compact */
+        line-height: 1.4;
+        white-space: nowrap;
+        /* încearcă o linie */
+    }
+
+}
+
+/* ===== RIGHT SIDE (SOCIAL) ===== */
+
+.footer__right {
+    display: flex;
+    gap: 16px;
+}
+
+.footer__right a {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b2a22;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(210, 162, 37, 0.22);
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+
+.footer__right a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10);
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.footer__right svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 980px) {
+    .footer__premium-inner {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .footer__right {
+        justify-content: flex-start;
+    }
+
+    .footer__links {
+        gap: 8px 12px;
+    }
+}
+
+/* =========================
+   CTA — eliminăm banda de fundal
+   ========================= */
+
+.cta-card {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* păstrăm doar spacing între butoane */
+.cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: flex-start;
+    /* sau flex-start dacă le vrei aliniate stânga */
+}
+
+/* =========================
+   CTA Buttons — premium elegant
+   ========================= */
+
+/* buton gold principal */
+.btn--gold {
+    background: #3b2a22;
+    color: #e5b94a;
+    border: 1px solid #3b2a22;
+    box-shadow: 0 14px 30px rgba(16, 10, 6, 0.15);
+    transition: all .2s ease;
+}
+
+.btn--gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 38px rgba(16, 10, 6, 0.20);
+}
+
+/* ghost rafinat */
+.btn--ghost {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(210, 162, 37, 0.28);
+    box-shadow: 0 8px 20px rgba(16, 10, 6, 0.06);
+}
+
+.btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.90);
+    border-color: rgba(210, 162, 37, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.12);
+}
+
+/* =========================
+   FIX HOVER TEXT CTA
+   ========================= */
+
+/* Buton gold */
+.btn--gold:hover {
+    background: #3b2a22;
+    color: #e5b94a;
+    /* păstrăm auriul */
+}
+
+/* Ghost */
+.btn--ghost {
+    color: #3b2a22;
+}
+
+.btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.90);
+    color: #3b2a22;
+    /* forțăm culoarea textului */
+}
+
+/* =========================
+   CTA Glow Boutique
+   ========================= */
+
+/* Gold button */
+.btn--gold {
+    position: relative;
+    box-shadow: 0 14px 30px rgba(16, 10, 6, 0.15);
+    transition: all .25s ease;
+}
+
+.btn--gold:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 18px 38px rgba(16, 10, 6, 0.18),
+        0 0 0 3px rgba(210, 162, 37, 0.25),
+        0 0 18px rgba(210, 162, 37, 0.20);
+    /* glow subtil */
+}
+
+/* Ghost buttons */
+.btn--ghost {
+    transition: all .25s ease;
+}
+
+.btn--ghost:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 14px 28px rgba(16, 10, 6, 0.10),
+        0 0 0 2px rgba(210, 162, 37, 0.18),
+        0 0 14px rgba(210, 162, 37, 0.15);
+}
+
+/* =========================
+   CTA — Ultra Clean Premium
+   ========================= */
+
+.btn--gold,
+.btn--ghost {
+    transition: all .22s ease;
+}
+
+/* GOLD */
+.btn--gold:hover,
+.btn--gold:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px rgba(16, 10, 6, 0.22);
+}
+
+/* GHOST */
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(210, 162, 37, 0.45);
+    box-shadow: 0 14px 30px rgba(16, 10, 6, 0.12);
+}
+
+/* =========================
+   Back To Top — Produse
+   ========================= */
+
+#backToTop {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 999px;
+    border: 1px solid rgba(210, 162, 37, 0.28);
+
+    background: rgba(255, 255, 255, 0.85);
+    color: #3b2a22;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 24px rgba(16, 10, 6, 0.10);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+
+    transition: all .25s ease;
+    z-index: 999;
+}
+
+#backToTop.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#backToTop:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px rgba(16, 10, 6, 0.16);
+}
+
+/* SVG inside BackToTop */
+#backToTop svg {
+    width: 18px;
+    height: 18px;
+}
+
+#backToTop:hover svg {
+    transform: translateY(-1px);
+    transition: transform .2s ease;
+}
+
+/* =========================
+   Global Text Color — Warm Premium
+   ========================= */
+
+body {
+    color: #35251d;
+    /* maro cald, nu negru */
+}
+
+p,
+.product-card__desc,
+.category__head p {
+    color: #6f6258;
+}
+
+body {
+    color: #3b2a22;
+}
+
+h1,
+h2,
+h3 {
+    color: #3b2a22;
+}
+
+/* =========================
+   Text color — warm premium
+   ========================= */
+
+/* suprascriem token-ul folosit în style.css */
+:root {
+    --text: #3b2a22;
+    /* maro cald */
+    --muted: #6f6258;
+    /* opțional dacă ai folosit muted */
+}
+
+body {
+    color: var(--text);
+}
+
+/* titluri + linkuri de bază */
+h1,
+h2,
+h3 {
+    color: var(--text);
+}
+
+/* =========================
+   Restore warm text palette (Christine)
+   ========================= */
+
+body {
+    color: #4f342a !important;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--text) !important;
+}
+
+/* texte secundare */
+p,
+.muted,
+.category__head p,
+.product-card__desc {
+    color: var(--muted) !important;
+}
+
+/* =========================
+   HEADINGS — warm chocolate (not black)
+   ========================= */
+
+/* 1) Ușor mai cald decât --text din style.css */
+:root {
+    --heading: #4a342a;
+    /* “ciocolată” caldă, premium */
+}
+
+/* 2) Titluri mari peste tot */
+h1,
+h2,
+h3,
+.page-title,
+.hero h1,
+main h1 {
+    color: var(--heading) !important;
+}
+
+/* 3) Titlurile din carduri produse (astea îți par cele mai “negre”) */
+.product-card__title {
+    color: var(--heading) !important;
+}
+
+/* 4) Orice titlu din carduri (dacă ai și alte carduri) */
+.product-card h3,
+.blog-card h3,
+.card h3 {
+    color: var(--heading) !important;
+}
+
+/* =========================
+   Warm headings (less black)
+   ========================= */
+:root {
+    --text: #4a2d22;
+    /* mai cald + mai deschis decât #3a241c */
+    --body-text: #5b3a2f;
+    /* păstrezi */
+    --muted: #6a5a53;
+    /* păstrezi */
+}
+
+/* Ca să fim siguri că se aplică peste orice selector */
+h1,
+h2,
+h3,
+.product-card__title,
+.section__head h1,
+.section__head h2,
+.blog-card__title,
+.post__title {
+    color: var(--text) !important;
+}
+
+:root {
+    --text: #4a2d22;
+    /* cu 1-2 tonuri mai deschis */
+}
+
+.product-card__title {
+    color: #4a2d22 !important;
+}
+
+/* =========================
+   HEADER — FULL CLEAN (fără bandă deloc)
+   ========================= */
+
+.header {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* =========================
+   HEADER — subtle separation on scroll
+   ========================= */
+
+.header.header--scrolled {
+    background: rgba(251, 243, 232, 0.65);
+    /* ton din --bg */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 0 6px 24px rgba(58, 36, 28, 0.06);
+}
+
+/* =========================
+   HEADER — clean + scrolled (wins over !important)
+   ========================= */
+
+/* Starea normală: fără bandă */
+.header {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Starea la scroll: separare subtilă */
+.header.header--scrolled {
+    background: rgba(251, 243, 232, 0.6) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    box-shadow: 0 6px 24px rgba(58, 36, 28, 0.06) !important;
+}
+
+/* =========================
+   HEADER split-nav (logo centrat)
+   ========================= */
+
+.header__inner--split {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
+}
+
+/* nav-urile rămân identice ca look, doar le aliniez */
+.nav--left {
+    justify-self: start;
+}
+
+.nav--right {
+    justify-self: end;
+}
+
+/* logo perfect centrat */
+.brand--center {
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* hamburger rămâne pe mobil; pe desktop îl ascund deja regulile tale */
+@media (max-width: 980px) {
+    .header__inner--split {
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .nav--left,
+    .nav--right {
+        display: none;
+        /* pe mobil mergem pe meniul dropdown */
+    }
+
+    .brand--center {
+        justify-self: center;
+    }
+}
+
+/* =========================
+   HEADER — perfect balance (desktop only)
+   ========================= */
+
+@media (min-width: 981px) {
+
+    /* 3 coloane: stânga (1fr) | logo (auto) | dreapta (1fr) */
+    .header__inner--split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 16px;
+        padding: 16px 0;
+    }
+
+    /* Aducem meniurile spre logo (nu lipite de margini) */
+    .nav--left,
+    .nav--right {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        min-width: 0;
+    }
+
+    .nav--left {
+        justify-content: flex-end;
+        /* stânga “se împinge” spre centru */
+        padding-right: 18px;
+    }
+
+    .nav--right {
+        justify-content: flex-start;
+        /* dreapta “se trage” spre centru */
+        padding-left: 18px;
+    }
+
+    /* Logo perfect centrat */
+    .brand--center {
+        justify-self: center;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Hamburger ascuns pe desktop (dacă nu e deja) */
+    .menu-btn {
+        display: none;
+    }
+
+    /* ALL CAPS doar pe desktop (păstrăm designul, doar transformăm textul) */
+    .nav--desktop .nav__link {
+        text-transform: uppercase;
+        letter-spacing: .14em;
+        font-size: 12.5px;
+        /* arată mai luxury în caps */
+    }
+
+    /* CTA rămâne elegant, dar caps coerent */
+    .nav--desktop .nav__link--cta {
+        letter-spacing: .12em;
+    }
+}
+
+/* Mobile rămâne cum era: fără caps */
+@media (max-width: 980px) {
+    .nav-mobile .nav__link {
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: inherit;
+    }
+}
+
+/* =========================
+   HEADER — perfect balance + “connected logo” (desktop only)
+   ========================= */
+
+@media (min-width: 981px) {
+
+    .header__inner--split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: 14px;
+        padding: 16px 0;
+    }
+
+    /* aducem meniurile mai aproape de logo (mai puțin “împinse în margini”) */
+    .nav--left,
+    .nav--right {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+    }
+
+    .nav--left {
+        justify-content: flex-end;
+        gap: 18px;
+        padding-right: 10px;
+        /* mai aproape de logo */
+    }
+
+    .nav--right {
+        justify-content: flex-start;
+        gap: 14px;
+        /* puțin mai strâns (dreapta are mai mult text) */
+        padding-left: 10px;
+        /* mai aproape de logo */
+    }
+
+    .brand--center {
+        justify-self: center;
+        display: inline-flex;
+        align-items: center;
+        position: relative;
+        /* necesar pentru liniile fine */
+        padding: 0 18px;
+        /* spațiu pentru “hairline” */
+    }
+
+    /* “hairline” elegant: pleacă dinspre logo spre nav (nu e bandă) */
+    .brand--center::before,
+    .brand--center::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 140px;
+        /* lungime linie (ajustează 120–180) */
+        height: 1px;
+        transform: translateY(-50%);
+        opacity: 0.55;
+        pointer-events: none;
+        background: linear-gradient(90deg,
+                rgba(58, 36, 28, 0.00),
+                rgba(58, 36, 28, 0.10),
+                rgba(210, 165, 37, 0.12),
+                rgba(58, 36, 28, 0.10),
+                rgba(58, 36, 28, 0.00));
+    }
+
+    .brand--center::before {
+        right: 100%;
+    }
+
+    .brand--center::after {
+        left: 100%;
+    }
+
+    /* All caps — dar mai “quiet luxury” (mai puțin țipător) */
+    .nav--desktop .nav__link {
+        text-transform: uppercase;
+        letter-spacing: .11em;
+        /* mai mic decât înainte */
+        font-size: 12px;
+    }
+
+    /* CTA: păstrăm designul, doar îl facem să nu “tragă” prea tare la dreapta */
+    .nav--desktop .nav__link--cta {
+        letter-spacing: .10em;
+        padding: 10px 12px;
+        /* ușor mai compact ca să echilibreze lungimea */
+    }
+
+    /* hamburger off pe desktop */
+    .menu-btn {
+        display: none;
+    }
+}
+
+/* Mobile rămâne cum era (fără caps) */
+@media (max-width: 980px) {
+    .nav-mobile .nav__link {
+        text-transform: none;
+        letter-spacing: normal;
+        font-size: inherit;
+    }
+}
+
+/* =========================
+   FIX MOBILE HEADER
+   (readuce hamburgerul în dreapta)
+   ========================= */
+
+@media (max-width: 980px) {
+
+    /* =========================
+   FIX MOBILE HEADER — layout clasic
+   Logo stânga + hamburger dreapta
+   ========================= */
+
+    @media (max-width: 980px) {
+
+        /* revenim la layout flex simplu */
+        .header__inner--split {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* ascundem nav desktop */
+        .nav--left,
+        .nav--right {
+            display: none !important;
+        }
+
+        /* logo rămâne în stânga */
+        .brand--center {
+            margin: 0;
+        }
+
+        /* hamburger în dreapta */
+        .menu-btn {
+            display: inline-flex;
+            margin-left: 0;
+        }
+    }
+}
+
+/* =========================
+   HEADER — desktop: logo mai mare + bandă mai îngustă
+   + scoatem hairline
+   ========================= */
+
+/* 1) Scoate hairline (dacă există dinainte) */
+@media (min-width: 981px) {
+
+    .brand--center::before,
+    .brand--center::after {
+        content: none !important;
+        display: none !important;
+    }
+}
+
+/* 2) Desktop: bandă mai “tight” + logo mai mare */
+@media (min-width: 981px) {
+
+    /* micșorăm înălțimea headerului */
+    .header__inner--split {
+        padding: 0px 0 !important;
+        /* era 16px */
+    }
+
+    /* logo mai mare (ajustează la gust: 115–140) */
+    .brand__logo {
+        height: 116px !important;
+        width: auto;
+    }
+
+    /* dacă simți că linkurile sunt “prea jos” după mărirea logo-ului */
+    .nav--left,
+    .nav--right {
+        align-items: center;
+    }
+
+    /* păstrăm caps, dar mai calm (luxury) */
+    .nav--desktop .nav__link {
+        letter-spacing: .10em !important;
+        font-size: 12px !important;
+    }
+}
+
+/* 3) Mobile rămâne cum ai cerut: logo stânga + hamburger dreapta */
+@media (max-width: 980px) {
+    .brand__logo {
+        height: 72px;
+        /* sau cât aveai înainte */
+    }
+}
+
+@media (min-width: 981px) {
+
+    .nav--left {
+        gap: 16px;
+        /* puțin mai strâns */
+    }
+
+    .nav--right {
+        gap: 18px;
+        /* un pic mai aerisit */
+    }
+
+    .nav--left .nav__link--cta {
+        padding: 8px 14px;
+        /* puțin mai compact */
+    }
+
+}
+
+/* =========================
+   NAV ACTIVE STATE — premium subtle
+   ========================= */
+
+.nav__link[aria-current="page"] {
+    color: var(--nav-text);
+    opacity: 1;
+    position: relative;
+}
+
+/* underline subtil auriu */
+.nav__link[aria-current="page"]::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 4px;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(210, 165, 37, 0.45),
+            transparent);
+}
+
+/* =========================
+   FOOTER — compact premium
+   ========================= */
+
+.footer--premium {
+    padding: 6px 0 !important;
+    /* era 22px */
+}
+
+.footer__premium-inner {
+    gap: 18px !important;
+    /* mai puțin spațiu între left/right */
+}
+
+.footer__left {
+    font-size: 12.5px;
+    /* ușor mai mic */
+    line-height: 1.35;
+}
+
+.footer__links {
+    margin-top: 4px;
+    gap: 6px;
+    /* mai strâns între linkuri */
+    font-size: 12.5px;
+}
+
+.footer__right {
+    gap: 14px;
+    /* iconițe mai apropiate */
+}

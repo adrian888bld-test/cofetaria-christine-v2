@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Evenimente — Cofetăria Christine</title>
+    <meta name="description"
+        content="Candy bar, tort nuntă și tort botez — Cofetăria Christine, București. Degustare, livrare și montaj." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="premium-style.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header__inner header__inner--split">
+
+            <!-- LEFT NAV (acum cu CTA) -->
+            <nav class="nav nav--desktop nav--left" aria-label="Navigație principală stânga">
+                <a class="nav__link nav__link--cta" href="comanda-tort.html">Comandă tort</a>
+                <a class="nav__link" href="produse.html">Produse</a>
+                <a class="nav__link" href="evenimente.html">Evenimente</a>
+            </nav>
+
+            <!-- LOGO -->
+            <a class="brand brand--center" href="index.html" aria-label="Cofetăria Christine">
+                <img class="brand__logo" src="assets/img/logo.png" alt="Cofetăria Christine" />
+            </a>
+
+            <!-- RIGHT NAV -->
+            <nav class="nav nav--desktop nav--right" aria-label="Navigație secundară dreapta">
+                <a class="nav__link" href="despre-noi.html">Despre noi</a>
+                <a class="nav__link" href="blog.html">Blog</a>
+                <a class="nav__link" href="contact.html">Contact</a>
+            </nav>
+
+            <!-- Hamburger (mobil) — păstrezi exact ca înainte -->
+            <button class="menu-btn" type="button" aria-label="Deschide meniul" aria-controls="mobileMenu"
+                aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+        </div>
+
+        <!-- NAV mobil (dropdown) — lasă-l EXACT cum îl ai acum -->
+        <nav id="mobileMenu" class="nav-mobile" aria-label="Meniu mobil" hidden>
+            <div class="container nav-mobile__inner">
+                <a class="nav__link" href="index.html">Home</a>
+                <a class="nav__link" href="despre-noi.html">Despre noi</a>
+                <a class="nav__link" href="produse.html">Produse</a>
+                <a class="nav__link" href="evenimente.html">Evenimente</a>
+                <a class="nav__link" href="blog.html">Blog</a>
+                <a class="nav__link" href="contact.html">Contact</a>
+                <a class="nav__link nav__link--cta" href="comanda-tort.html">Comandă tort</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <a class="backlink" href="blog.html">← Înapoi la Blog</a>
+
+                <article class="post">
+                    <p class="post__meta">25 feb 2026 • Corporate</p>
+                    <h1 class="post__title">TOP 3 ”ce preferă clienții corporate”</h1>
+                    <p class="post__lead">
+                    <h2>1. Platoul MiniDoux</h2>
+                    <p>
+                        Este creat pentru evenimente și conține prăjituri OneBite, ușor de savurat. Un platou este
+                        perfect pentru 10-15
+                        persoane. Este cel mai apreciat platou în rândul ”corporatiștilor” și cel mai comandat produs în
+                        fiecare an.
+                    </p>
+
+                    <h2>2. Platoul MiniQuiche</h2>
+                    <p>
+                        Două tipuri de miniquiche - somon și spanac / trei tipuri de brânză - tot din categoria OneBite,
+                        potrivite pentru orice
+                        moment al zilei. Asigură o gustare foarte sățioasă.
+                    </p>
+
+                    <h2>3. Categoria „Umple masa”</h2>
+                    <p>
+                        Este o categorie mai specială, ușor amuzantă, dar care creează conexiuni reale între colegi. Se
+                        umple o masă cu zeci de
+                        prăjituri și se oferă mână liberă la „atac”.
+                    </p>
+                    <p>
+                        De obicei, „Umple masa” se folosește atunci când o persoană își celebrează ziua de naștere
+                        alături de colegi.
+                    </p>
+
+                    <p>
+                        Nu ezita să ne contactezi dacă pregătești o
+                        petrecere și dorești un
+                        sampling. Apoi, dezvoltăm împreună petrecerea ideală de la birou.
+                    </p>
+
+                    <p><strong>Cofetăria Christine</strong> - de 15 ani alături de clienții corporate.</p>
+
+
+                </article>
+            </div>
+        </section>
+
+        <footer class="footer--premium">
+            <div class="container">
+                <div class="footer__premium-inner">
+
+                    <div class="footer__left">
+                        <div class="footer__copyright">
+                            Copyright © <span id="year"></span> Cofetăria Christine. Toate drepturile rezervate.
+                        </div>
+
+                        <div class="footer__links">
+                            <a href="politica-confidentialitate.html">Politica de confidențialitate</a>
+
+                            <a href="politica-cookies.html">Politica de cookies</a>
+
+                            <a href="https://reclamatiisal.anpc.ro" target="_blank" rel="noopener">
+                                ANPC – Soluționarea alternativă a litigiilor
+                            </a>
+
+                            <a href="https://consumer-redress.ec.europa.eu/site-relocation_en" target="_blank"
+                                rel="noopener">
+                                Soluționarea online a litigiilor
+                            </a>
+
+                            <a href="https://jurnalnutritional.ro/restaurant/6406daed0e2ca49d1d1c0c90/" target="_blank"
+                                rel="noopener">
+                                Valori nutriționale
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- IMPORTANT: iconițele trebuie să fie AICI, ca frate al footer__left -->
+                    <div class="footer__right" aria-label="Social media">
+                        <a href="https://instagram.com/cofetariachristine" target="_blank" rel="noopener"
+                            data-tip="Instagram" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M7.5 2.8h9A4.7 4.7 0 0 1 21.2 7.5v9A4.7 4.7 0 0 1 16.5 21.2h-9A4.7 4.7 0 0 1 2.8 16.5v-9A4.7 4.7 0 0 1 7.5 2.8Z"
+                                    stroke="currentColor" stroke-width="1.8" />
+                                <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor"
+                                    stroke-width="1.8" />
+                                <path d="M17.3 6.7h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                            </svg>
+                        </a>
+
+                        <a href="https://facebook.com/cofetariachristine" target="_blank" rel="noopener"
+                            data-tip="Facebook" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M14 8.6V7.1c0-.9.6-1.1 1-1.1h1.9V3.2h-2.6c-2.9 0-3.6 2.2-3.6 3.6v1.8H8.9V12h1.8v8.8H14V12h2.6l.4-3.4H14Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </a>
+
+                        <a href="https://www.tiktok.com/@cofetaria_christine?_r=1&_t=ZN-942uora95oE" target="_blank"
+                            rel="noopener" data-tip="TikTok" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M14 3v10.2a3.6 3.6 0 1 1-3-3.5V7.1a6.2 6.2 0 1 0 6 6.1V8.2c.9.7 2.1 1.2 3.4 1.3V6.6c-1.8-.2-3.2-1.6-3.4-3.6H14Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        const y = document.getElementById("year");
+        if (y) y.textContent = new Date().getFullYear();
+    </script>
+    <script>
+        const btn = document.querySelector(".menu-btn");
+        const menu = document.getElementById("mobileMenu");
+
+        if (btn && menu) {
+            btn.addEventListener("click", () => {
+                const isOpen = !menu.hasAttribute("hidden");
+                if (isOpen) {
+                    menu.setAttribute("hidden", "");
+                    btn.setAttribute("aria-expanded", "false");
+                } else {
+                    menu.removeAttribute("hidden");
+                    btn.setAttribute("aria-expanded", "true");
+                }
+            });
+
+            // închide meniul când dai click pe un link
+            menu.addEventListener("click", (e) => {
+                const link = e.target.closest("a");
+                if (!link) return;
+                menu.setAttribute("hidden", "");
+                btn.setAttribute("aria-expanded", "false");
+            });
+
+            // ESC închide
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    menu.setAttribute("hidden", "");
+                    btn.setAttribute("aria-expanded", "false");
+                }
+            });
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const header = document.querySelector(".header");
+            if (!header) return;
+
+            const toggleHeader = () => {
+                header.classList.toggle("header--scrolled", window.scrollY > 10);
+            };
+
+            toggleHeader(); // ca să se seteze corect și după refresh la mijlocul paginii
+            window.addEventListener("scroll", toggleHeader, { passive: true });
+        });
+    </script>
+</body>
+
+</html>

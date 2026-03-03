@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Evenimente — Cofetăria Christine</title>
+    <meta name="description"
+        content="Candy bar, tort nuntă și tort botez — Cofetăria Christine, București. Degustare, livrare și montaj." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="premium-style.css" />
+</head>
+
+<body class="page-evenimente">
+
+    <header class="header">
+        <div class="container header__inner header__inner--split">
+
+            <!-- LEFT NAV (acum cu CTA) -->
+            <nav class="nav nav--desktop nav--left" aria-label="Navigație principală stânga">
+                <a class="nav__link nav__link--cta" href="comanda-tort.html">Comandă tort</a>
+                <a class="nav__link" href="produse.html">Produse</a>
+                <a class="nav__link" href="evenimente.html" aria-current="page">Evenimente</a>
+            </nav>
+
+            <!-- LOGO -->
+            <a class="brand brand--center" href="index.html" aria-label="Cofetăria Christine">
+                <img class="brand__logo" src="assets/img/logo.png" alt="Cofetăria Christine" />
+            </a>
+
+            <!-- RIGHT NAV -->
+            <nav class="nav nav--desktop nav--right" aria-label="Navigație secundară dreapta">
+                <a class="nav__link" href="despre-noi.html">Despre noi</a>
+                <a class="nav__link" href="blog.html">Blog</a>
+                <a class="nav__link" href="contact.html">Contact</a>
+            </nav>
+
+            <!-- Hamburger (mobil) — păstrezi exact ca înainte -->
+            <button class="menu-btn" type="button" aria-label="Deschide meniul" aria-controls="mobileMenu"
+                aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+        </div>
+
+        <!-- NAV mobil (dropdown) — lasă-l EXACT cum îl ai acum -->
+        <nav id="mobileMenu" class="nav-mobile" aria-label="Meniu mobil" hidden>
+            <div class="container nav-mobile__inner">
+                <a class="nav__link" href="index.html">Home</a>
+                <a class="nav__link" href="despre-noi.html">Despre noi</a>
+                <a class="nav__link" href="produse.html">Produse</a>
+                <a class="nav__link" href="evenimente.html" aria-current="page">Evenimente</a>
+                <a class="nav__link" href="blog.html">Blog</a>
+                <a class="nav__link" href="contact.html">Contact</a>
+                <a class="nav__link nav__link--cta" href="comanda-tort.html">Comandă tort</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <br>
+        <section class="section">
+            <div class="container">
+                <div class="section__head">
+                    <h2>Evenimente</h2>
+                    <p>Candy bar pentru orice tip de evenimente. Tort de nuntă. Tort de botez. Lucrăm doar cu
+                        monoporții, prezentarea se face într-un mod unic. </p>
+
+                    <div class="category-nav" aria-label="Categorii evenimente">
+                        <a class="chip" href="#candybar">Candy bar</a>
+                        <a class="chip" href="#tort-nunta">Tort nuntă</a>
+                        <a class="chip" href="#tort-botez">Tort botez</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CANDY BAR -->
+        <section id="candybar" class="category">
+            <div class="container">
+                <div class="category__head">
+                    <h2>Candy bar</h2>
+                    <p>Descoperă selecția de produse premium, cu specific franțuzesc, pe care le vei regăsi în candy
+                        barurile noastre:
+                        patru tipuri macarons (ciocolată, vanilie și zmeură, cafea, fistic și caise), verine (pahare cu
+                        mousse), trei tipuri choux (vanilie, ciocolată și praline), minimousse Criollo, minimousse
+                        Petit ball, minimousse
+                        Trois chocolats, minitarte fructe proaspete, minitarte coapte vișine, minitarte coapte pere,
+                        mini cheesecake. <br>
+                        <strong>Candy barurile Christine se realizează pentru un minim de 50 persoane.</strong>
+                    </p>
+                </div>
+
+                <div class="products-grid">
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/candy-bar-suport-plexiglas.jpg" alt="Candy bar suport plexiglas"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Candy bar suport plexiglas</h3>
+                            <p class="product-card__desc">Eleganță extraordinară. Se potrivește în orice tip de local și
+                                pentru orice tip de eveniment.
+                            </p>
+                            <div class="product-card__meta">
+                                <span class="price">de la 2175 Lei</span>
+                                <span class="badge">nuntă și botez</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/candy-bar-suport-lemn-alb.jpg" alt="Candy bar suport lemn alb"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Candy bar suport lemn alb</h3>
+                            <p class="product-card__desc">Potrivit pentru saloane de
+                                tip ballroom, fie pentru nuntă sau botez (maxim 120 persoane.)</p>
+                            <div class="product-card__meta">
+                                <span class="price">de la 2175 Lei</span>
+                                <span class="badge">nuntă și botez</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/candy-bar-suport-lemn-bleu.jpg" alt="Candy bar suport lemn bleu"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Candy bar suport lemn bleu</h3>
+                            <p class="product-card__desc">Potrivit pentru botez de băiețel, indiferent de tipul de
+                                salon, pentru maxim 120 persoane.</p>
+                            <div class="product-card__meta">
+                                <span class="price">de la 2175 Lei</span>
+                                <span class="badge">botez băiat</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/candy-bar-suport-lemn-roz.jpg" alt="Candy bar suport lemn roz"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Candy bar suport lemn roz</h3>
+                            <p class="product-card__desc">Potrivit pentru botez de fetiță, indiferent de tipul de
+                                salon, pentru maxim 120 persoane.</p>
+                            <div class="product-card__meta">
+                                <span class="price">de la 2175 Lei</span>
+                                <span class="badge">botez fată</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/poză-indisponibilă.jpg" alt="Pachet degustare candy bar"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Pachet degustare candy bar</h3>
+                            <p class="product-card__desc">Pachetul este disponibil doar la comandă, după ofertare, cu
+                                ridicare în
+                                zilele de sâmbătă.</p>
+                            <div class="product-card__meta">
+                                <span class="price">105 Lei</span>
+                                <span class="badge">degustare</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div style="margin-top:18px;">
+                    <a class="btn btn--ghost" href="comanda-tort.html?produs=Candy%20bar">Cere ofertă ”Candy bar”</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TORT NUNTĂ -->
+        <section id="tort-nunta" class="category">
+            <div class="container">
+                <div class="category__head">
+                    <h2>Tort nuntă</h2>
+                    <p>Eleganța unei prăjituri în farfuria fiecărui invitat. Lucrăm doar cu monoporții, atent decorate,
+                        pentru că noi
+                        credem că nu există o altă variantă mai elegantă. Prezentarea se face pe suport de lemn sau
+                        plexiglas. Pe suport va fi prezentat un mic tort cu <strong>numele mirilor</strong>, alături de
+                        un aranjament din
+                        prăjituri (în funcție de suport) și un superb aranjament floral natural în tema evenimentului.
+                        <br>
+                        <strong>Prețul afișat este pentru un eveniment de 50 persoane, servicii incluse.</strong>
+                    </p>
+                </div>
+
+                <div class="products-grid">
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/tort nunta suport lemn.jpg" alt="Tort nuntă suport lemn"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Tort nuntă suport lemn</h3>
+                            <p class="product-card__desc">O prezentare de excepție pe un suport de lemn și aranjament
+                                din flori naturale, potrivit pentru orice tip de locație cu elemente din natură.</p>
+                            <div class="product-card__meta">
+                                <span class="price">de la 1860 Lei</span>
+                                <span class="badge">Nuntă</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/tort nunta suport plexiglas.jpg" alt="Tort nuntă suport plexiglas"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Tort nuntă suport plexiglas</h3>
+                            <p class="product-card__desc">Prezentarea perfectă pentru orice tip de locație. Tort plus 4
+                                aranajemnte din prăjituri, completate de un superb aranjament floral.</p>
+                            <div class="product-card__meta">
+                                <span class="price">de la 1860 Lei</span>
+                                <span class="badge">Nuntă</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/degustare tort.jpg" alt="Degustare tort nuntă" loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Degustare tort nuntă</h3>
+                            <p class="product-card__desc">Poți comanda pachetul de degustare al celor cinci variante de
+                                prăjituri pe care le recomandăm pentru evenimente.</p>
+                            <div class="product-card__meta">
+                                <span class="price">115 Lei</span>
+                                <span class="badge">Degustare</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div style="margin-top:18px;">
+                    <a class="btn btn--ghost" href="comanda-tort.html?eveniment=nunta">
+                        Cere ofertă ”Tort nuntă”
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TORT BOTEZ -->
+        <section id="tort-botez" class="category">
+            <div class="container">
+                <div class="category__head">
+                    <h2>Tort botez</h2>
+                    <p>Eleganța unei prăjituri în farfuria fiecărui invitat. Lucrăm doar cu monoporții, atent decorate,
+                        pentru că noi
+                        credem că nu există o altă variantă mai elegantă. Prezentarea se face pe suport de lemn sau
+                        plexiglas. Pe suport va fi prezentat un mic tort cu <strong>numele copilului</strong>, alături
+                        de un aranjament
+                        din
+                        prăjituri (în funcție de suport) și un superb aranjament floral natural în tema evenimentului.
+                        <br>
+                        <strong>Prețul afișat este pentru un eveniment de 50 persoane, servicii incluse.</strong>
+                    </p>
+                </div>
+
+                <div class="products-grid">
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/tort botez suport lemn.jpg" alt="Tort botez suport lemn"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Tort botez suport lemn</h3>
+                            <p class="product-card__desc">Eleganță, naturalețe, puritate, transpuse într-un aranjament
+                                superb din lemn, completat perfect de un aranjament floral
+                                natural.
+                            </p>
+                            <div class="product-card__meta">
+                                <span class="price">de la 1860 Lei</span>
+                                <span class="badge">Botez</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/tort nunta suport plexiglas.jpg" alt="Tort botez suport plexiglas"
+                                loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Tort botez suport plexiglas</h3>
+                            <p class="product-card__desc">Prezentarea perfectă pentru orice tip de locație. Tort plus 4
+                                aranajemnte din prăjituri, completate de un superb aranjament floral.</p>
+                            <div class="product-card__meta">
+                                <span class="price">de la 1860 Lei</span>
+                                <span class="badge">Botez</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-card__media">
+                            <img src="assets/img/degustare tort.jpg" alt="Degustare tort botez" loading="lazy">
+                        </div>
+                        <div class="product-card__body">
+                            <h3 class="product-card__title">Degustare tort botez</h3>
+                            <p class="product-card__desc">Poți comanda pachetul de degustare al celor cinci variante de
+                                prăjituri pe care le recomandăm pentru evenimente.</p>
+                            <div class="product-card__meta">
+                                <span class="price">115 Lei</span>
+                                <span class="badge">Degustare</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div style="margin-top:18px;">
+                    <a class="btn btn--ghost" href="comanda-tort.html?eveniment=botez">
+                        Cere ofertă ”Tort botez”
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA (buttons only) -->
+        <section class="section cta-section">
+            <div class="container">
+                <div class="cta-card" aria-label="Acțiuni rapide">
+                    <div class="actions cta-actions">
+                        <a class="btn btn--gold" href="comanda-tort.html">Comandă tort</a>
+                        <a class="btn btn--ghost" href="comanda-tort.html">Ofertă eveniment</a>
+                        <a class="btn btn--ghost" href="tel:+40747724045">Sună!</a>
+                        <a class="btn btn--ghost" href="https://wa.me/40747724045" target="_blank" rel="noopener">
+                            Scrie-ne pe WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer--premium">
+            <div class="container">
+                <div class="footer__premium-inner">
+
+                    <div class="footer__left">
+                        <div class="footer__copyright">
+                            Copyright © <span id="year"></span> Cofetăria Christine. Toate drepturile rezervate.
+                        </div>
+
+                        <div class="footer__links">
+                            <a href="politica-confidentialitate.html">Politica de confidențialitate</a>
+
+                            <a href="politica-cookies.html">Politica de cookies</a>
+
+                            <a href="https://reclamatiisal.anpc.ro" target="_blank" rel="noopener">
+                                ANPC – Soluționarea alternativă a litigiilor
+                            </a>
+
+                            <a href="https://consumer-redress.ec.europa.eu/site-relocation_en" target="_blank"
+                                rel="noopener">
+                                Soluționarea online a litigiilor
+                            </a>
+
+                            <a href="https://jurnalnutritional.ro/restaurant/6406daed0e2ca49d1d1c0c90/" target="_blank"
+                                rel="noopener">
+                                Valori nutriționale
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- IMPORTANT: iconițele trebuie să fie AICI, ca frate al footer__left -->
+                    <div class="footer__right" aria-label="Social media">
+                        <a href="https://instagram.com/cofetariachristine" target="_blank" rel="noopener"
+                            data-tip="Instagram" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M7.5 2.8h9A4.7 4.7 0 0 1 21.2 7.5v9A4.7 4.7 0 0 1 16.5 21.2h-9A4.7 4.7 0 0 1 2.8 16.5v-9A4.7 4.7 0 0 1 7.5 2.8Z"
+                                    stroke="currentColor" stroke-width="1.8" />
+                                <path d="M12 16.2a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Z" stroke="currentColor"
+                                    stroke-width="1.8" />
+                                <path d="M17.3 6.7h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                            </svg>
+                        </a>
+
+                        <a href="https://facebook.com/cofetariachristine" target="_blank" rel="noopener"
+                            data-tip="Facebook" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M14 8.6V7.1c0-.9.6-1.1 1-1.1h1.9V3.2h-2.6c-2.9 0-3.6 2.2-3.6 3.6v1.8H8.9V12h1.8v8.8H14V12h2.6l.4-3.4H14Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </a>
+
+                        <a href="https://www.tiktok.com/@cofetaria_christine?_r=1&_t=ZN-942uora95oE" target="_blank"
+                            rel="noopener" data-tip="TikTok" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                    d="M14 3v10.2a3.6 3.6 0 1 1-3-3.5V7.1a6.2 6.2 0 1 0 6 6.1V8.2c.9.7 2.1 1.2 3.4 1.3V6.6c-1.8-.2-3.2-1.6-3.4-3.6H14Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script>
+        const btn = document.querySelector(".menu-btn");
+        const menu = document.getElementById("mobileMenu");
+
+        if (btn && menu) {
+            btn.addEventListener("click", () => {
+                const isOpen = !menu.hasAttribute("hidden");
+                if (isOpen) {
+                    menu.setAttribute("hidden", "");
+                    btn.setAttribute("aria-expanded", "false");
+                } else {
+                    menu.removeAttribute("hidden");
+                    btn.setAttribute("aria-expanded", "true");
+                }
+            });
+
+            // închide meniul când dai click pe un link
+            menu.addEventListener("click", (e) => {
+                const link = e.target.closest("a");
+                if (!link) return;
+                menu.setAttribute("hidden", "");
+                btn.setAttribute("aria-expanded", "false");
+            });
+
+            // ESC închide
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    menu.setAttribute("hidden", "");
+                    btn.setAttribute("aria-expanded", "false");
+                }
+            });
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const header = document.querySelector(".header");
+            if (!header) return;
+
+            const toggleHeader = () => {
+                header.classList.toggle("header--scrolled", window.scrollY > 10);
+            };
+
+            toggleHeader(); // ca să se seteze corect și după refresh la mijlocul paginii
+            window.addEventListener("scroll", toggleHeader, { passive: true });
+        });
+    </script>
+</body>
+
+</html>
