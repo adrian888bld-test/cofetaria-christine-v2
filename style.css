@@ -1478,42 +1478,36 @@ a.link-inline:hover {
 }
 
 /* Cookie banner */
+/* Cookie popup (dreapta-jos) */
 .cookie {
   position: fixed;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 720px;
+  right: 18px;
+  bottom: 18px;
+  width: min(420px, calc(100% - 36px));
+  z-index: 9999;
 
   background: rgba(255, 255, 255, .98);
-  border-radius: 20px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, .15);
-  padding: 20px 24px;
+  border: 1px solid rgba(0, 0, 0, .08);
+  border-radius: 18px;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, .16);
+  padding: 16px 16px;
 
   display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: space-between;
-
-  z-index: 9999;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .cookie__text {
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.45;
   color: #2a1b14;
-}
-
-.cookie__link {
-  color: inherit;
-  text-decoration: underline;
 }
 
 .cookie__actions {
   display: flex;
   gap: 10px;
-  flex-shrink: 0;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .cookie__btn {
@@ -1531,13 +1525,19 @@ a.link-inline:hover {
   color: #4a2d22;
 }
 
-@media (max-width: 520px) {
-  .cookie {
-    flex-direction: column;
-    align-items: stretch;
+/* mic efect "popup" */
+.cookie {
+  animation: cookieIn .28s ease-out both;
+}
+
+@keyframes cookieIn {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
   }
 
-  .cookie__actions {
-    justify-content: flex-end;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
