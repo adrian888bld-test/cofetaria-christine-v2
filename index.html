@@ -296,25 +296,27 @@
     });
   </script>
   <!-- Cookie banner -->
-  <div class="cookie__text">
-    La Cofetăria Christine, singurele calorii reale sunt în vitrină.
-    Pe site folosim doar cookie-uri digitale pentru o experiență
-    la fel de rafinată ca deserturile noastre.
-    <a class="cookie__link" href="politica-cookies.html">Află mai multe</a>.
-  </div>
+  <div class="cookie" id="cookie">
+    <div class="cookie__text">
+      La Cofetăria Christine, singurele calorii reale sunt în vitrină.
+      Pe site folosim doar cookie-uri digitale pentru o experiență
+      la fel de rafinată ca deserturile noastre.
+      <a class="cookie__link" href="politica-cookies.html">Află mai multe</a>.
+    </div>
 
-  <div class="cookie__actions">
-    <button class="cookie__btn cookie__btn--ghost" id="cookieReject" type="button">
-      Doar admir
-    </button>
-    <button class="cookie__btn" id="cookieAccept" type="button">
-      Accept experiența
-    </button>
+    <div class="cookie__actions">
+      <button class="cookie__btn cookie__btn--ghost" id="cookieReject" type="button">
+        Doar admir
+      </button>
+      <button class="cookie__btn" id="cookieAccept" type="button">
+        Accept experiența
+      </button>
+    </div>
   </div>
 
   <script>
     (function () {
-      const KEY = "cc_consent_v1"; // accepted | rejected
+      const KEY = "cc_consent_v1";
       const bar = document.getElementById("cookie");
       const accept = document.getElementById("cookieAccept");
       const reject = document.getElementById("cookieReject");
