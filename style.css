@@ -1541,3 +1541,12 @@ a.link-inline:hover {
     opacity: 1;
   }
 }
+
+/* Cookie popup - force it to stick to viewport (fix for transforms/filters elsewhere) */
+.cookie {
+  position: fixed !important;
+  right: 18px !important;
+  bottom: 18px !important;
+  z-index: 999999 !important;
+  transform: none !important;
+}
