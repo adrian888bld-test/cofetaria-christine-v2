@@ -1477,30 +1477,48 @@ a.link-inline:hover {
   transform: translateY(-2px);
 }
 
-/* Cookie banner */
 /* Cookie popup (dreapta-jos) */
 .cookie {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
+  position: fixed !important;
+  right: 18px !important;
+  bottom: 18px !important;
   width: min(420px, calc(100% - 36px));
-  z-index: 9999;
+  z-index: 999999 !important;
 
   background: rgba(255, 255, 255, .98);
-  border: 1px solid rgba(0, 0, 0, .08);
+  border: 1px solid rgba(0, 0, 0, .10);
   border-radius: 18px;
-  box-shadow: 0 22px 55px rgba(0, 0, 0, .16);
-  padding: 16px 16px;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, .18);
+  padding: 16px;
 
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  animation: cookieIn .28s ease-out both;
+}
+
+@keyframes cookieIn {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .cookie__text {
   font-size: 14px;
   line-height: 1.45;
   color: #2a1b14;
+}
+
+.cookie__link {
+  color: inherit;
+  text-decoration: underline;
 }
 
 .cookie__actions {
@@ -1517,36 +1535,10 @@ a.link-inline:hover {
   cursor: pointer;
   background: #4a2d22;
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .cookie__btn--ghost {
   background: transparent;
   color: #4a2d22;
-}
-
-/* mic efect "popup" */
-.cookie {
-  animation: cookieIn .28s ease-out both;
-}
-
-@keyframes cookieIn {
-  from {
-    transform: translateY(12px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Cookie popup - force it to stick to viewport (fix for transforms/filters elsewhere) */
-.cookie {
-  position: fixed !important;
-  right: 18px !important;
-  bottom: 18px !important;
-  z-index: 999999 !important;
-  transform: none !important;
 }
