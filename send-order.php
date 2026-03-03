@@ -1,84 +1,67 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
+// send-order.php
 
-function clean_one_line($s) {
-  $s = (string)$s;
-  $s = str_replace(["\r", "\n"], " ", $s); // anti header-injection
-  return trim($s);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  http_response_code(405);
+  exit('Method not allowed');
 }
 
-function get_post($key) {
-  return isset($_POST[$key]) ? $_POST[$key] : '';
+// === SETĂRI TEST ===
+$to = 'test@cofetaria-christine.ro';
+$from = 'test@cofetaria-christine.ro'; // mai sigur să fie de pe domeniul tău
+
+// Helper
+function clean($v) {
+  return trim(str_replace(["\r","\n"], ' ', (string)$v));
 }
 
-$eveniment = clean_one_line(get_post('eveniment'));
-$nume      = clean_one_line(get_post('nume'));
-$telefon   = clean_one_line(get_post('telefon'));
-$data      = clean_one_line(get_post('data'));
-$tipTort   = clean_one_line(get_post('tipTort'));
-$nrPers    = clean_one_line(get_post('nrPersoane'));
-$platou    = clean_one_line(get_post('platouOneBite'));
-$mesaj     = trim((string)get_post('mesaj'));
+// Preluare câmpuri (din formularul tău)
+$nume       = clean($_POST['nume'] ?? '');
+$telefon    = clean($_POST['telefon'] ?? '');
+$eveniment  = clean($_POST['eveniment'] ?? '');
+$data       = clean($_POST['data'] ?? '');
+$tipTort    = clean($_POST['tipTort'] ?? '');
+$nrPersoane = clean($_POST['nrPersoane'] ?? '');
+$platou     = clean($_POST['platouOneBite'] ?? '');
+$mesaj      = trim((string)($_POST['mesaj'] ?? ''));
 
-$errors = [];
-
-if ($nume === '')      $errors['nume'] = 'Te rugăm să completezi numele.';
-if ($telefon === '')   $errors['telefon'] = 'Te rugăm să completezi telefonul.';
-if ($eveniment === '') $errors['eveniment'] = 'Te rugăm să alegi tipul evenimentului.';
-if ($data === '')      $errors['data'] = 'Te rugăm să alegi data evenimentului.';
-if ($mesaj === '')     $errors['mesaj'] = 'Te rugăm să completezi mesajul / detaliile.';
-
-// Dacă e Aniversare, acestea sunt required (conform cerinței tale)
-if ($eveniment === 'Aniversare') {
-  if ($tipTort === '')  $errors['tipTort'] = 'Te rugăm să alegi tipul de tort.';
-  if ($nrPers === '')   $errors['nrPersoane'] = 'Te rugăm să completezi numărul de persoane.';
-  if ($platou === '')   $errors['platouOneBite'] = 'Te rugăm să alegi platoul OneBite.';
-}
-
-if (!empty($errors)) {
-  http_response_code(422);
-  echo json_encode(['ok' => false, 'errors' => $errors], JSON_UNESCAPED_UNICODE);
+// Validări minime
+if ($nume === '' || $telefon === '' || $eveniment === '' || $data === '' || $mesaj === '') {
+  header('Location: comanda-tort.html?sent=0');
   exit;
 }
 
-// Routing destinatari:
-$to = 'comenzi@cofetaria-christine.ro'; // Aniversare + Corporate
-if ($eveniment === 'Botez' || $eveniment === 'Nuntă') {
-  $to = 'adrian@cofetaria-christine.ro';
-}
+// Subiect + corp email
+$subject = "TEST | Comandă tort - {$eveniment} - {$nume}";
 
-// Subiect + body
-$subject = "Solicitare — {$eveniment} — {$nume}";
+$body =
+"Solicitare nouă (TEST) - Comandă tort\n"
+."============================\n"
+."Nume: {$nume}\n"
+."Telefon: {$telefon}\n"
+."Tip eveniment: {$eveniment}\n"
+."Data evenimentului: {$data}\n"
+."\n"
+."(Opțional) Tip tort: {$tipTort}\n"
+."(Opțional) Nr persoane: {$nrPersoane}\n"
+."(Opțional) Platou OneBite: {$platou}\n"
+."\n"
+."Mesaj / Detalii:\n{$mesaj}\n"
+."\n"
+."IP: " . ($_SERVER['REMOTE_ADDR'] ?? '-') . "\n"
+."User-Agent: " . ($_SERVER['HTTP_USER_AGENT'] ?? '-') . "\n";
 
-$body  = "Tip eveniment: {$eveniment}\n";
-$body .= "Nume: {$nume}\n";
-$body .= "Telefon: {$telefon}\n";
-$body .= "Data evenimentului: {$data}\n";
-
-if ($eveniment === 'Aniversare') {
-  $body .= "Tip tort: {$tipTort}\n";
-  $body .= "Număr persoane: {$nrPers}\n";
-  $body .= "Platou OneBite: {$platou}\n";
-}
-
-$body .= "\nMesaj / Detalii:\n{$mesaj}\n";
-
-// Headers (ajustează domeniul dacă ai alt email de pe domeniu)
+// Headere (simple și stabile)
 $headers = [];
-$headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-Type: text/plain; charset=UTF-8';
-$headers[] = 'From: Cofetăria Christine <no-reply@cofetaria-christine.ro>';
-$headers[] = 'Reply-To: comenzi@cofetaria-christine.ro';
+$headers[] = "MIME-Version: 1.0";
+$headers[] = "Content-Type: text/plain; charset=UTF-8";
+$headers[] = "From: Cofetăria Christine (TEST) <{$from}>";
 
-// Subject UTF-8 safe
-$encodedSubject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+$ok = mail($to, $subject, $body, implode("\r\n", $headers));
 
-$sent = @mail($to, $encodedSubject, $body, implode("\r\n", $headers));
-
-if (!$sent) {
-  http_response_code(500);
-  echo json_encode(['ok' => false, 'error' => 'Mail failed'], JSON_UNESCAPED_UNICODE);
-  exit;
+if ($ok) {
+  header('Location: multumim.html');
+} else {
+  header('Location: comanda-tort.html?sent=0');
 }
-
-echo json_encode(['ok' => true], JSON_UNESCAPED_UNICODE);
+exit;
