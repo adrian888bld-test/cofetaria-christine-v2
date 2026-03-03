@@ -295,6 +295,43 @@
       window.addEventListener("scroll", toggleHeader, { passive: true });
     });
   </script>
+  <!-- Cookie banner -->
+  <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <div class="cookie__text">
+      Folosim cookie-uri necesare pentru funcționarea site-ului și, doar cu acordul tău, cookie-uri pentru
+      analiză/marketing.
+      <a class="cookie__link" href="politica-cookies.html">Află mai multe</a>.
+    </div>
+    <div class="cookie__actions">
+      <button class="cookie__btn cookie__btn--ghost" id="cookieReject" type="button">Refuz</button>
+      <button class="cookie__btn" id="cookieAccept" type="button">Accept</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const KEY = "cc_consent_v1"; // accepted | rejected
+      const bar = document.getElementById("cookie");
+      const accept = document.getElementById("cookieAccept");
+      const reject = document.getElementById("cookieReject");
+
+      if (!bar) return;
+
+      const saved = localStorage.getItem(KEY);
+      if (saved === "accepted" || saved === "rejected") {
+        bar.style.display = "none";
+        return;
+      }
+
+      function setConsent(value) {
+        localStorage.setItem(KEY, value);
+        bar.style.display = "none";
+      }
+
+      accept && accept.addEventListener("click", () => setConsent("accepted"));
+      reject && reject.addEventListener("click", () => setConsent("rejected"));
+    })();
+  </script>
 </body>
 
 </html>
