@@ -1482,14 +1482,16 @@ a.link-inline:hover {
   position: fixed !important;
   right: 18px !important;
   bottom: 18px !important;
-  width: min(420px, calc(100% - 36px));
+  width: min(340px, calc(100% - 36px));
   z-index: 999999 !important;
 
-  background: rgba(255, 255, 255, .98);
+  background: rgba(255, 255, 255, .88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(0, 0, 0, .10);
   border-radius: 18px;
   box-shadow: 0 22px 55px rgba(0, 0, 0, .18);
-  padding: 16px;
+  padding: 12px;
 
   display: flex;
   flex-direction: column;
