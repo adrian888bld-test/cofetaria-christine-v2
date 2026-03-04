@@ -44,6 +44,7 @@ function clean($v) {
 // Preluare câmpuri
 $nume       = clean($_POST['nume'] ?? '');
 $telefon    = clean($_POST['telefon'] ?? '');
+$email      = clean($_POST['email'] ?? '');
 $eveniment  = clean($_POST['eveniment'] ?? '');
 $data       = clean($_POST['data'] ?? '');
 $tipTort    = clean($_POST['tipTort'] ?? '');
@@ -56,6 +57,8 @@ $errors = [];
 
 if ($nume === '')      $errors['nume'] = 'Te rugăm să completezi acest câmp.';
 if ($telefon === '')   $errors['telefon'] = 'Te rugăm să completezi acest câmp.';
+if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL))
+    $errors['email'] = 'Te rugăm să introduci un email valid.';
 if ($eveniment === '') $errors['eveniment'] = 'Te rugăm să completezi acest câmp.';
 if ($data === '')      $errors['data'] = 'Te rugăm să completezi acest câmp.';
 if ($mesaj === '')     $errors['mesaj'] = 'Te rugăm să completezi acest câmp.';
@@ -93,6 +96,7 @@ try {
         ."=====================================\n"
         ."Nume: {$nume}\n"
         ."Telefon: {$telefon}\n"
+        ."Email: {$email}\n"
         ."Eveniment: {$eveniment}\n"
         ."Data: {$data}\n\n"
         ."Tip tort: {$tipTort}\n"

@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Evenimente — Cofetăria Christine</title>
+    <title>Comandă tort — Cofetăria Christine</title>
     <meta name="description"
-        content="Candy bar, tort nuntă și tort botez — Cofetăria Christine, București. Degustare, livrare și montaj." />
+        content="Comandă tort sau cere ofertă pentru evenimentul tău — Cofetăria Christine, București. Degustare, livrare și montaj." />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,7 @@
                 <a class="nav__link" href="contact.html">Contact</a>
             </nav>
 
-            <!-- Hamburger (mobil) — păstrezi exact ca înainte -->
+            <!-- Hamburger (mobil) -->
             <button class="menu-btn" type="button" aria-label="Deschide meniul" aria-controls="mobileMenu"
                 aria-expanded="false">
                 <span></span><span></span><span></span>
@@ -51,7 +51,7 @@
 
         </div>
 
-        <!-- NAV mobil (dropdown) — lasă-l EXACT cum îl ai acum -->
+        <!-- NAV mobil (dropdown) -->
         <nav id="mobileMenu" class="nav-mobile" aria-label="Meniu mobil" hidden>
             <div class="container nav-mobile__inner">
                 <a class="nav__link" href="index.html">Home</a>
@@ -72,23 +72,29 @@
                     <h1>Comandă tort sau cere ofertă pentru evenimentul tău!</h1>
                     <p>Completează formularul oferind cu atenție toate detaliile solicitate.</p>
                 </div>
+
                 <div class="info-important info-buttons">
                     <a href="informații-importante.html" class="btn btn--ghost btn--small btn--info">
                         Detalii despre comenzi și livrare
                     </a>
 
                     <a href="assets/pdf/torturi-la-comanda.pdf" class="btn btn--ghost btn--small btn--info"
-                        target="_blank">
+                        target="_blank" rel="noopener">
                         Vezi aici torturile la comandă
                     </a>
                 </div>
+
                 <br>
-                <!-- IMPORTANT: id="orderForm" -->
+
+                <!-- FORM -->
                 <form id="orderForm" class="form" action="send-order.php" method="post" novalidate>
-                    <!-- Anti-spam -->
+
+                    <!-- Anti-spam (honeypot + time) -->
                     <input type="text" name="website" tabindex="-1" autocomplete="off"
                         style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
                     <input type="hidden" name="form_time" id="form_time" value="">
+
+                    <!-- RÂND 1: Nume + Telefon -->
                     <div class="form__row">
                         <label class="field">
                             Nume
@@ -103,17 +109,12 @@
                         </label>
                     </div>
 
+                    <!-- RÂND 2: Email (opțional) + Data -->
                     <div class="form__row">
                         <label class="field">
-                            Tip eveniment
-                            <select name="eveniment" id="tipEveniment" required>
-                                <option value="">Apasă pentru selecție..</option>
-                                <option value="Aniversare">Aniversare</option>
-                                <option value="Botez">Botez</option>
-                                <option value="Nuntă">Nuntă</option>
-                                <option value="Corporate">Corporate</option>
-                            </select>
-                            <small class="field-error" data-error-for="eveniment"></small>
+                            Email (opțional)
+                            <input type="email" name="email" autocomplete="email" placeholder="ex: nume@email.ro" />
+                            <small class="field-error" data-error-for="email"></small>
                         </label>
 
                         <label class="field">
@@ -123,61 +124,69 @@
                         </label>
                     </div>
 
-                    <!-- ANIVERSARE -->
-                    <div id="sectiuneAniversare" style="display: none;">
-                        <div class="form__row">
-                            <label class="field">
-                                Tip tort
-                                <select id="tipTort" name="tipTort">
-                                    <option value="">Apasă pentru selecție..</option>
-                                    <option value="Fără tort">Fără tort</option>
-                                    <option>Trois Chocolats</option>
-                                    <option>Criollo</option>
-                                    <option>Framboise</option>
-                                    <option>Symphonie</option>
-                                    <option>Pralin</option>
-                                    <option>Rubis</option>
-                                    <option>Petit ball</option>
-                                    <option>Passion</option>
-                                    <option>Truffe</option>
-                                    <option>Fraisier</option>
-                                    <option>Mojo</option>
-                                    <option>Haluka</option>
-                                    <option>Opera</option>
-                                    <option>Bisous</option>
-                                    <option>L'Amandine</option>
-                                </select>
-                                <small class="field-error" data-error-for="tipTort"></small>
-                            </label>
+                    <!-- RÂND 3: Tip eveniment + Număr persoane (doar la Aniversare) -->
+                    <div class="form__row" id="rowEveniment">
+                        <label class="field">
+                            Tip eveniment
+                            <select name="eveniment" id="tipEveniment" required>
+                                <option value="">Apasă pentru selecție..</option>
+                                <option value="Aniversare">Aniversare</option>
+                                <option value="Botez">Botez</option>
+                                <option value="Nuntă">Nuntă</option>
+                                <option value="Corporate">Corporate</option>
+                            </select>
+                        </label>
 
-                            <label class="field">
-                                Număr persoane
-                                <input type="number" id="nrPersoane" name="nrPersoane" min="1" placeholder="Ex: 10" />
-                                <small class="field-error" data-error-for="nrPersoane"></small>
-                            </label>
-                        </div>
-
-                        <div class="form__row">
-                            <label class="field">
-                                Alege Platoul OneBite
-                                <select id="platouOneBite" name="platouOneBite">
-                                    <option value="">Apasă pentru selecție..</option>
-                                    <option>Fără Platou</option>
-                                    <option>Platou MiniDoux</option>
-                                    <option>Platou TarteCoapte</option>
-                                    <option>Platou MiniQuiche</option>
-                                </select>
-                                <small class="field-error" data-error-for="platouOneBite"></small>
-                            </label>
-
-                            <div class="field field--note">
-                                <span class="field__label-spacer" aria-hidden="true"></span>
-                                <small>Cantitatea platourilor va fi comunicată telefonic la confirmarea
-                                    comenzii.</small>
-                            </div>
-                        </div>
+                        <label class="field" id="nrPersoaneWrap" hidden>
+                            Număr persoane
+                            <input type="number" id="nrPersoane" name="nrPersoane" min="1">
+                        </label>
                     </div>
 
+                    <!-- RÂND 4: Tip tort + Platou (doar la Aniversare) -->
+                    <div class="form__row" id="aniversareRow2" hidden>
+                        <label class="field">
+                            Tip tort
+                            <select id="tipTort" name="tipTort">
+                                <option value="">Apasă pentru selecție..</option>
+                                <option value="Fără tort">Fără tort</option>
+                                <option>Trois Chocolats</option>
+                                <option>Criollo</option>
+                                <option>Framboise</option>
+                                <option>Symphonie</option>
+                                <option>Pralin</option>
+                                <option>Rubis</option>
+                                <option>Petit ball</option>
+                                <option>Passion</option>
+                                <option>Truffe</option>
+                                <option>Fraisier</option>
+                                <option>Mojo</option>
+                                <option>Haluka</option>
+                                <option>Opera</option>
+                                <option>Bisous</option>
+                                <option>L'Amandine</option>
+                            </select>
+                            <small class="field-error" data-error-for="tipTort"></small>
+                        </label>
+
+                        <label class="field">
+                            Alege Platoul OneBite
+                            <select id="platouOneBite" name="platouOneBite">
+                                <option value="">Apasă pentru selecție..</option>
+                                <option>Fără Platou</option>
+                                <option>Platou MiniDoux</option>
+                                <option>Platou TarteCoapte</option>
+                                <option>Platou MiniQuiche</option>
+                            </select>
+                            <small class="field-error" data-error-for="platouOneBite"></small>
+
+                            <small class="field-help">
+                                Cantitatea platourilor va fi comunicată telefonic la confirmarea comenzii.
+                            </small>
+                        </label>
+                    </div>
+
+                    <!-- Mesaj / Detalii -->
                     <label class="field">
                         Mesaj / Detalii
                         <textarea id="mesajDetalii" name="mesaj" rows="6" required></textarea>
@@ -185,12 +194,13 @@
                     </label>
 
                     <button class="btn" type="submit">Trimite solicitarea</button>
+
                     <p class="form-gdpr">
                         Prin trimiterea formularului confirm că datele mele vor fi prelucrate de
                         <strong>Cofetăria Christine S.R.L.</strong> exclusiv pentru procesarea și soluționarea
                         solicitării mele,
-                        în conformitate cu <a href="politica-confidentialitate.html" class="link-inline">Politica
-                            de confidențialitate</a>.
+                        în conformitate cu <a href="politica-confidentialitate.html" class="link-inline">Politica de
+                            confidențialitate</a>.
                     </p>
                 </form>
             </div>
@@ -207,18 +217,14 @@
 
                         <div class="footer__links">
                             <a href="politica-confidentialitate.html">Politica de confidențialitate</a>
-
                             <a href="politica-cookies.html">Politica de cookies</a>
-
                             <a href="https://reclamatiisal.anpc.ro" target="_blank" rel="noopener">
                                 ANPC – Soluționarea alternativă a litigiilor
                             </a>
-
                             <a href="https://consumer-redress.ec.europa.eu/site-relocation_en" target="_blank"
                                 rel="noopener">
                                 Soluționarea online a litigiilor
                             </a>
-
                             <a href="https://jurnalnutritional.ro/restaurant/6406daed0e2ca49d1d1c0c90/" target="_blank"
                                 rel="noopener">
                                 Valori nutriționale
@@ -226,7 +232,6 @@
                         </div>
                     </div>
 
-                    <!-- IMPORTANT: iconițele trebuie să fie AICI, ca frate al footer__left -->
                     <div class="footer__right" aria-label="Social media">
                         <a href="https://instagram.com/cofetariachristine" target="_blank" rel="noopener"
                             data-tip="Instagram" aria-label="Instagram">
@@ -277,6 +282,12 @@
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
 
+        // setează timpul formularului (anti-spam time-check)
+        (function () {
+            const ft = document.getElementById("form_time");
+            if (ft) ft.value = String(Math.round(performance.timeOrigin + performance.now()));
+        })();
+
         const templates = {
             default: "",
             aniversare: "Ora ridicării din magazin:\nMesaj pe tort:",
@@ -285,21 +296,19 @@
         };
 
         const tipEveniment = document.getElementById("tipEveniment");
-        const sectiuneAniversare = document.getElementById("sectiuneAniversare");
         const mesajDetalii = document.getElementById("mesajDetalii");
-        /* PRESELECTARE DIN URL */
-        (function () {
-            const params = new URLSearchParams(window.location.search);
-            const ev = params.get("eveniment");
-            if (!ev) return;
-
-            tipEveniment.value = ev;
-            tipEveniment.dispatchEvent(new Event("change"));
-        })();
 
         const tipTort = document.getElementById("tipTort");
         const nrPersoane = document.getElementById("nrPersoane");
         const platouOneBite = document.getElementById("platouOneBite");
+
+        const nrPersoaneWrap = document.getElementById("nrPersoaneWrap");
+        const aniversareRow2 = document.getElementById("aniversareRow2");
+
+        /* STARE INITIALA (cand se incarca pagina) */
+        nrPersoaneWrap.hidden = true;
+        aniversareRow2.hidden = true;
+        setRequiredForAniversare(false);
 
         mesajDetalii.value = templates.default;
 
@@ -315,45 +324,61 @@
             }
         }
 
+
         tipEveniment.addEventListener("change", function () {
             const val = this.value;
+            const isAniv = (val === "Aniversare");
 
-            sectiuneAniversare.style.display = "none";
-            setRequiredForAniversare(false);
+            nrPersoaneWrap.hidden = !isAniv;
+            aniversareRow2.hidden = !isAniv;
 
-            if (val === "Aniversare") {
-                sectiuneAniversare.style.display = "block";
-                setRequiredForAniversare(true);
+            setRequiredForAniversare(isAniv);
+
+            if (isAniv) {
                 mesajDetalii.value = templates.aniversare;
-            } else if (val === "Botez" || val.toLowerCase().includes("nunt")) {
+            } else if (val === "Botez" || val === "Nuntă") {
+
+                nrPersoaneWrap.hidden = true;
+                aniversareRow2.hidden = true;
+
                 mesajDetalii.value = templates.nunta_botez;
+
             } else if (val === "Corporate") {
+
+                nrPersoaneWrap.hidden = true;
+                aniversareRow2.hidden = true;
+
                 mesajDetalii.value = templates.corporate;
+
             } else {
+
+                nrPersoaneWrap.hidden = true;
+                aniversareRow2.hidden = true;
+
                 mesajDetalii.value = templates.default;
             }
         });
-        // PRESELECTARE DIN URL: ?eveniment=nunta
+
+        /* RULEAZĂ SCRIPTUL ȘI LA ÎNCĂRCAREA PAGINII */
+        tipEveniment.dispatchEvent(new Event("change"));
+
+        // PRESELECTARE DIN URL (acceptă: ?eveniment=Nuntă sau ?eveniment=nunta)
         (function () {
             const params = new URLSearchParams(window.location.search);
-            const ev = (params.get("eveniment") || "").toLowerCase().trim();
-            if (!ev) return;
+            const raw = (params.get("eveniment") || "").trim();
+            if (!raw) return;
 
-            const map = {
-                nunta: "Nuntă",
-                botez: "Botez",
-                aniversare: "Aniversare",
-                corporate: "Corporate",
-            };
+            const low = raw.toLowerCase();
+            const map = { nunta: "Nuntă", botez: "Botez", aniversare: "Aniversare", corporate: "Corporate" };
 
-            if (map[ev]) {
-                tipEveniment.value = map[ev];
-                tipEveniment.dispatchEvent(new Event("change"));
-            }
+            const mapped = map[low] || raw;
+            tipEveniment.value = mapped;
+            tipEveniment.dispatchEvent(new Event("change"));
         })();
     </script>
 
     <script>
+        // meniu mobil
         const btn = document.querySelector(".menu-btn");
         const menu = document.getElementById("mobileMenu");
 
@@ -433,7 +458,6 @@
                 clearErrors();
                 let ok = true;
 
-                // validăm doar câmpurile required (incl. cele activate pe Aniversare)
                 const requiredFields = Array.from(form.querySelectorAll("[required]"));
 
                 requiredFields.forEach((field) => {
@@ -461,6 +485,15 @@
                             setError(name, "Te rugăm să introduci un număr valid.");
                         }
                     }
+
+                    if (field.type === "email" && value) {
+                        // validare email simplă (browserul mai validează și el)
+                        const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                        if (!isValid) {
+                            ok = false;
+                            setError(name, "Te rugăm să introduci un email valid.");
+                        }
+                    }
                 });
 
                 return ok;
@@ -470,8 +503,6 @@
                 e.preventDefault();
 
                 if (!validate()) return;
-                const ft = document.getElementById("form_time");
-                if (ft && !ft.value) ft.value = String(Date.now());
 
                 const fd = new FormData(form);
 
@@ -489,7 +520,7 @@
                             return;
                         }
                         alert("Te rugăm să aștepți câteva secunde și să încerci din nou.");
-                        return; // IMPORTANT
+                        return;
                     }
 
                     const ev = (fd.get("eveniment") || "").toString();
@@ -499,19 +530,32 @@
                         openModal(MSG_ANIV_CORP);
                     }
 
-                    // reset form + revine la starea inițială
                     form.reset();
                     clearErrors();
-                    document.getElementById("sectiuneAniversare").style.display = "none";
+
+                    // reset anti-spam time
+                    const ft = document.getElementById("form_time");
+                    if (ft) ft.value = String(Math.round(performance.timeOrigin + performance.now()));
+
+                    // reset vizual + template
+                    if (window.tipEveniment) window.tipEveniment.value = "";
                     if (window.mesajDetalii) window.mesajDetalii.value = templates.default;
 
+                    // ascunde aniv
+                    const wrap = document.getElementById("nrPersoaneWrap");
+                    const row2 = document.getElementById("aniversareRow2");
+                    if (wrap) wrap.style.display = "none";
+                    if (row2) row2.style.display = "none";
+
                 } catch (err) {
-                    alert("Te rugăm să aștepți câteva secunde și să încerci din nou.");
+                    alert("A apărut o problemă la trimitere. Te rugăm să încerci din nou.");
                 }
             });
         })();
     </script>
+
     <script>
+        // header scroll
         document.addEventListener("DOMContentLoaded", () => {
             const header = document.querySelector(".header");
             if (!header) return;
@@ -520,10 +564,11 @@
                 header.classList.toggle("header--scrolled", window.scrollY > 10);
             };
 
-            toggleHeader(); // ca să se seteze corect și după refresh la mijlocul paginii
+            toggleHeader();
             window.addEventListener("scroll", toggleHeader, { passive: true });
         });
     </script>
+
     <!-- Cookie banner -->
     <div class="cookie" id="cookie">
         <div class="cookie__text">
@@ -567,6 +612,7 @@
             reject && reject.addEventListener("click", () => setConsent("rejected"));
         })();
     </script>
+
 </body>
 
 </html>

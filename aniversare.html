@@ -1,85 +1,135 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Formular Aniversare - Cofetăria Christine</title>
+    <meta charset="UTF-8">
+    <title>Formular Aniversare - Cofetăria Christine</title>
 </head>
+
 <body>
 
-<h2>Comandă Tort Aniversare</h2>
+    <h2>Comandă Tort Aniversare</h2>
 
-<form id="formular-eveniment">
+    <form id="formular-eveniment">
 
-  <!-- Tip eveniment -->
-  <label>Tip eveniment *</label><br>
-  <select id="tipEveniment" required>
-    <option value="" selected disabled>Alege tipul evenimentului</option>
-    <option value="aniversare">Aniversare</option>
-    <option value="nunta">Nuntă</option>
-    <option value="botez">Botez</option>
-    <option value="corporate">Corporate</option>
-  </select>
+        <!-- Tip eveniment -->
+        <label>Tip eveniment *</label><br>
+        <select id="tipEveniment" required>
+            <option value="" selected disabled>Alege tipul evenimentului</option>
+            <option value="aniversare">Aniversare</option>
+            <option value="nunta">Nuntă</option>
+            <option value="botez">Botez</option>
+            <option value="corporate">Corporate</option>
+        </select>
 
-  <!-- Sectiune Aniversare -->
-  <div id="sectiuneAniversare" style="display:none; margin-top:15px;">
+        <!-- Sectiune Aniversare -->
+        <div id="sectiuneAniversare" style="display:none; margin-top:15px;">
 
-    <br>
-    <label>Tip tort *</label><br>
-    <select id="tipTort">
-      <option value="" selected disabled>Alege tipul tortului</option>
-      <option>Trois Chocolats</option>
-      <option>Criollo</option>
-      <option>Framboise</option>
-      <option>Symphonie</option>
-      <option>Pralin</option>
-      <option>Rubis</option>
-      <option>Petit ball</option>
-      <option>Passion</option>
-      <option>Truffe</option>
-      <option>Fraisier</option>
-      <option>Mojo</option>
-      <option>Haluka</option>
-      <option>Opera</option>
-      <option>Bisous</option>
-      <option>L'Amandine</option>
-    </select>
+            <br>
+            <label>Tip tort *</label><br>
+            <select id="tipTort">
+                <option value="" selected disabled>Alege tipul tortului</option>
+                <option>Trois Chocolats</option>
+                <option>Criollo</option>
+                <option>Framboise</option>
+                <option>Symphonie</option>
+                <option>Pralin</option>
+                <option>Rubis</option>
+                <option>Petit ball</option>
+                <option>Passion</option>
+                <option>Truffe</option>
+                <option>Fraisier</option>
+                <option>Mojo</option>
+                <option>Haluka</option>
+                <option>Opera</option>
+                <option>Bisous</option>
+                <option>L'Amandine</option>
+            </select>
 
-    <br><br>
-    <label>Număr persoane *</label><br>
-    <input type="number" id="nrPersoane" min="1" placeholder="Ex: 10">
+            <br><br>
+            <label>Număr persoane *</label><br>
+            <input type="number" id="nrPersoane" min="1" placeholder="Ex: 10">
 
-  </div>
+        </div>
 
-  <br><br>
-  <label>Detalii *</label><br>
-  <textarea rows="5" required>Ora ridicării din magazin:
+        <br><br>
+        <label>Detalii *</label><br>
+        <textarea rows="5" required>Ora ridicării din magazin:
 Mesaj pe tort:</textarea>
 
-  <br><br>
-  <button type="submit">Trimite</button>
+        <br><br>
+        <button type="submit">Trimite</button>
 
-</form>
+    </form>
 
-<script>
-  const tipEveniment = document.getElementById("tipEveniment");
-  const sectiuneAniversare = document.getElementById("sectiuneAniversare");
-  const tipTort = document.getElementById("tipTort");
-  const nrPersoane = document.getElementById("nrPersoane");
+    <script>
+        const tipEveniment = document.getElementById("tipEveniment");
+        const mesajDetalii = document.getElementById("mesajDetalii");
 
-  tipEveniment.addEventListener("change", function () {
-    if (this.value === "aniversare") {
-      sectiuneAniversare.style.display = "block";
-      tipTort.required = true;
-      nrPersoane.required = true;
-    } else {
-      sectiuneAniversare.style.display = "none";
-      tipTort.required = false;
-      nrPersoane.required = false;
-      tipTort.selectedIndex = 0;
-      nrPersoane.value = "";
-    }
-  });
-</script>
+        const tipTort = document.getElementById("tipTort");
+        const nrPersoane = document.getElementById("nrPersoane");
+        const platouOneBite = document.getElementById("platouOneBite");
+
+        const nrPersoaneWrap = document.getElementById("nrPersoaneWrap");
+        const aniversareRow2 = document.getElementById("aniversareRow2");
+
+        const templates = {
+            default: "",
+            aniversare: "Ora ridicării din magazin:\nMesaj pe tort:",
+            nunta_botez: "Bună ziua,\n\nVă rog să îmi trimiteți o ofertă pentru evenimentul meu.\n\n- Ora de începere: \n- Locația evenimentului (nu doar orașul sau sectorul): \n- Produsele dorite (tort, candy bar, etc.): \n- Numărul aproximativ de persoane: \n\nVă mulțumesc!",
+            corporate: "Doresc să fiu contactat telefonic pentru detaliile comenzii mele corporate sau evenimentului meu corporate.",
+        };
+
+        mesajDetalii.value = templates.default;
+
+        function setRequiredForAniversare(isOn) {
+            tipTort.required = isOn;
+            nrPersoane.required = isOn;
+            platouOneBite.required = isOn;
+
+            if (!isOn) {
+                tipTort.value = "";
+                nrPersoane.value = "";
+                platouOneBite.value = "";
+            }
+        }
+
+        tipEveniment.addEventListener("change", function () {
+            const val = this.value;
+
+            // ascundem tot ce e de Aniversare
+            nrPersoaneWrap.style.display = "none";
+            aniversareRow2.style.display = "none";
+            setRequiredForAniversare(false);
+
+            if (val === "Aniversare") {
+                nrPersoaneWrap.style.display = "block";
+                aniversareRow2.style.display = "flex"; // sau "flex" dacă la tine .form__row e flex
+                setRequiredForAniversare(true);
+                mesajDetalii.value = templates.aniversare;
+            } else if (val === "Botez" || val === "Nuntă") {
+                mesajDetalii.value = templates.nunta_botez;
+            } else if (val === "Corporate") {
+                mesajDetalii.value = templates.corporate;
+            } else {
+                mesajDetalii.value = templates.default;
+            }
+        });
+
+        // preselectare din URL ?eveniment=nunta
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const ev = (params.get("eveniment") || "").toLowerCase().trim();
+            if (!ev) return;
+
+            const map = { nunta: "Nuntă", botez: "Botez", aniversare: "Aniversare", corporate: "Corporate" };
+            if (map[ev]) {
+                tipEveniment.value = map[ev];
+                tipEveniment.dispatchEvent(new Event("change"));
+            }
+        })();
+    </script>
 
 </body>
+
 </html>
