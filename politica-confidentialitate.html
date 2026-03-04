@@ -55,7 +55,6 @@
         <!-- NAV mobil (dropdown) — lasă-l EXACT cum îl ai acum -->
         <nav id="mobileMenu" class="nav-mobile" aria-label="Meniu mobil" hidden>
             <div class="container nav-mobile__inner">
-                <a class="nav__link" href="index.html">Home</a>
                 <a class="nav__link" href="despre-noi.html">Despre noi</a>
                 <a class="nav__link" href="produse.html">Produse</a>
                 <a class="nav__link" href="evenimente.html">Evenimente</a>
@@ -258,6 +257,42 @@
 
             toggleHeader(); // ca să se seteze corect și după refresh la mijlocul paginii
             window.addEventListener("scroll", toggleHeader, { passive: true });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const btn = document.querySelector(".menu-btn");
+            const menu = document.getElementById("mobileMenu");
+
+            if (!btn || !menu) return;
+
+            btn.addEventListener("click", () => {
+                const isOpen = !menu.hasAttribute("hidden");
+
+                if (isOpen) {
+                    menu.setAttribute("hidden", "");
+                    btn.setAttribute("aria-expanded", "false");
+                } else {
+                    menu.removeAttribute("hidden");
+                    btn.setAttribute("aria-expanded", "true");
+                }
+            });
+
+            // închide meniul când dai click pe un link
+            menu.addEventListener("click", (e) => {
+                const link = e.target.closest("a");
+                if (!link) return;
+                menu.setAttribute("hidden", "");
+                btn.setAttribute("aria-expanded", "false");
+            });
+
+            // ESC închide
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    menu.setAttribute("hidden", "");
+                    btn.setAttribute("aria-expanded", "false");
+                }
+            });
         });
     </script>
 </body>
