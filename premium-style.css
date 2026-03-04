@@ -1092,3 +1092,92 @@ form button[type="submit"]:hover {
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
 }
+
+/* ==========================================================
+   FIX FINAL BUTOANE (override peste tot site-ul)
+   Pune ULTIMUL in premium-style.css
+   ========================================================== */
+
+a.btn,
+button.btn {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+}
+
+/* Hover coerent, NU maro */
+a.btn:hover,
+button.btn:hover {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
+    transform: translateY(-2px);
+}
+
+/* Ghost */
+a.btn.btn--ghost,
+button.btn.btn--ghost {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--line);
+}
+
+a.btn.btn--ghost:hover,
+button.btn.btn--ghost:hover {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
+    transform: translateY(-2px);
+}
+
+/* CONTACT — fix hover butoane Google Maps / Waze (fără maro) */
+.address-actions .btn,
+.address-actions .btn:hover,
+.address-actions .btn:focus-visible {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+}
+
+/* =========================================
+   CONTACT – oprește hover-ul maro pe linkurile din carduri
+   (fără să strici restul site-ului)
+   ========================================= */
+
+/* 1) Butoanele Google Maps / Waze – hover elegant, ca restul butoanelor */
+.page-contact .address-actions .btn:hover,
+.page-contact .address-actions .btn:focus-visible {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* 2) Social media – să nu se mai facă maro */
+.page-contact .contact-social a:hover,
+.page-contact .contact-social a:focus-visible {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* CONTACT – Google Maps / Waze: oprește hover-ul maro (forțat) */
+.page-contact .address-actions a.btn:hover,
+.page-contact .address-actions a.btn:focus-visible,
+.page-contact .address-actions a.btn:active {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* dacă ai o regulă generică pe linkuri în carduri, o anulăm DOAR aici */
+.page-contact .address-actions a.btn:hover * {
+    color: #3b2a22 !important;
+}
