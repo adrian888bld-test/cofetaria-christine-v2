@@ -70,10 +70,10 @@ $siteName = 'Cofetăria Christine';
 $toEmail  = 'test@cofetaria-christine.ro'; // destinatar formular contact
 
 // Subject elegant, scurt
-$subject = "Mesaj nou (Contact) — {$nume}";
+$subject = "CONTACT — {$nume}";
 
 /* Construim email HTML (frumos) */
-$preheader = "Mesaj nou primit din pagina Contact.";
+$preheader = "Mesaj nou primit - Contact.";
 $now = date('d.m.Y H:i');
 
 $html = '<!doctype html>
@@ -96,7 +96,7 @@ $html = '<!doctype html>
             <td style="padding:14px 18px; text-align:left;">
               <div style="font-size:13px; opacity:.75;">'.$siteName.'</div>
               <div style="font-size:22px; font-weight:700; letter-spacing:-.2px; margin-top:6px;">
-                Mesaj nou din formularul de contact
+                Mesaj nou - Contact
               </div>
               <div style="font-size:12px; opacity:.7; margin-top:6px;">
                 Trimisa la '.$now.'

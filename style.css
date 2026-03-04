@@ -77,20 +77,43 @@ h3 {
 }
 
 /* =========================
-   HOME BACKGROUND (ONLY HOME)
+   HOME BACKGROUND (HOME + ALTE PAGINI)
    ========================= */
-.page-home {
+.page-home,
+.page-blog,
+.page-contact,
+.page-despre-noi {
   position: relative;
   background: url("./assets/img/home-bg.jpg") center/cover fixed no-repeat;
 }
 
-.page-home::before {
+.page-home::before,
+.page-blog::before,
+.page-contact::before,
+.page-despre-noi::before {
   content: "";
   position: fixed;
   inset: 0;
   background: rgba(251, 250, 247, .82);
   z-index: 0;
   pointer-events: none;
+}
+
+/* FIX: overlay-ul de fundal să stea în spate, conținutul deasupra */
+.page-home>header,
+.page-home>main,
+.page-home>footer,
+.page-blog>header,
+.page-blog>main,
+.page-blog>footer,
+.page-contact>header,
+.page-contact>main,
+.page-contact>footer,
+.page-despre-noi>header,
+.page-despre-noi>main,
+.page-despre-noi>footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* ridicăm conținutul peste overlay */
