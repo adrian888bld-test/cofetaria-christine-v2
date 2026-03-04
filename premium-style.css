@@ -231,46 +231,46 @@ html {
     }
 }
 
-/* ========== BUTTONS ========== */
+/* =========================
+   BUTOANE SITE
+   ========================= */
+
 .btn {
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 20px;
     border-radius: 999px;
-    line-height: 1.1;
-    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
-}
 
-.btn--small {
-    padding: 10px 16px;
-    font-size: 14px;
-}
+    background: #ffffff;
+    border: 1px solid #4a2d22;
 
-.btn--ghost {
-    background: rgba(255, 255, 255, 0.62);
-    border: 1px solid rgba(210, 162, 37, 0.28);
-    box-shadow: none;
-    color: var(--nav-text);
-}
-
-.btn--ghost:hover {
-    background: rgba(255, 255, 255, 0.78);
-    border-color: rgba(210, 162, 37, 0.42);
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10);
-}
-
-.btn--order {
-    font-weight: 700;
-}
-
-.btn--info {
     color: #4a2d22;
+    font-weight: 500;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: all .2s ease;
 }
 
-.btn:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(210, 162, 37, 0.18);
+/* Hover */
+.btn:hover {
+    background: #4a2d22;
+    color: #ffffff;
+    border-color: #4a2d22;
+}
+
+/* Active click */
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:hover {
+    background: #4a2d22;
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 /* ========== HEADER (stable) ========== */
@@ -843,4 +843,218 @@ section {
 /* IMPORTANT: hidden trebuie să bată peste display:grid */
 #orderForm [hidden] {
     display: none !important;
+}
+
+/* =========================
+   ORDER FORM — Mobile: aceeași structură, stabil
+   ========================= */
+
+@media (max-width: 820px) {
+
+    /* fiecare rând devine 1 coloană */
+    #orderForm .form__row {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* când Număr persoane e ascuns, rândul 3 rămâne “curat” */
+    #orderForm #nrPersoaneWrap[hidden] {
+        display: none !important;
+    }
+
+    /* rândul de Aniversare (Tip tort + Platou) tot 1 coloană pe mobil */
+    #orderForm #aniversareRow2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* helper text sub platou să nu fie tăiat pe mobil */
+    #orderForm .field-help {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: initial !important;
+    }
+}
+
+/* FORCE: orice element cu [hidden] din formular NU apare */
+#orderForm [hidden] {
+    display: none !important;
+}
+
+/* Butoane: pe hover nu mai dispare textul */
+.btn,
+.btn:visited {
+    color: #4a2d22;
+    text-decoration: none;
+}
+
+.btn:hover,
+.btn:focus-visible {
+    color: #4a2d22 !important;
+    text-decoration: none;
+}
+
+/* dacă ai icon (svg) în buton */
+.btn svg {
+    fill: currentColor;
+    stroke: currentColor;
+}
+
+/* BUTOANE PRIMARY (maro) */
+.btn--primary,
+.btn--order,
+.btn--submit {
+    background: #4a2d22;
+    border-color: #4a2d22;
+    color: #d4af37;
+    /* auriu */
+}
+
+.btn--primary:hover,
+.btn--order:hover,
+.btn--submit:hover {
+    background: #3a2219;
+    border-color: #3a2219;
+    color: #d4af37;
+}
+
+/* ==========================================================
+   BUTTONS — UNIFY (global)
+   Pastreaza toate butoanele elegante: alb + text maro
+   Pune ULTIMUL in CSS (premium-style.css / style.css)
+   ========================================================== */
+
+/* baza: <a class="btn"> si <button class="btn"> */
+.btn,
+a.btn,
+button.btn,
+input[type="submit"].btn {
+    -webkit-appearance: none;
+    appearance: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 11px 18px;
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.78) !important;
+    color: #3b2a22 !important;
+    border: 1px solid rgba(60, 40, 28, 0.22) !important;
+
+    font-family: inherit;
+    font-weight: 600;
+    letter-spacing: .02em;
+    text-decoration: none !important;
+
+    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06);
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+/* hover/focus: NU inversam culorile, doar rafinam */
+.btn:hover,
+a.btn:hover,
+button.btn:hover,
+input[type="submit"].btn:hover {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10);
+}
+
+.btn:focus-visible,
+a.btn:focus-visible,
+button.btn:focus-visible,
+input[type="submit"].btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(210, 162, 37, 0.18), 0 14px 28px rgba(16, 10, 6, 0.10);
+}
+
+/* vizitat sa ramana maro (nu mov) */
+a.btn:visited {
+    color: #3b2a22 !important;
+}
+
+/* dezactivat */
+.btn:disabled,
+button.btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ----------------------------------------------------------
+   IMPORTANT: submit-urile din formulare (daca nu au .btn)
+   (Trimite solicitarea etc.)
+   ---------------------------------------------------------- */
+#orderForm button[type="submit"],
+#contactForm button[type="submit"],
+form button[type="submit"] {
+    background: rgba(255, 255, 255, 0.78) !important;
+    color: #3b2a22 !important;
+    border: 1px solid rgba(60, 40, 28, 0.22) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06) !important;
+}
+
+#orderForm button[type="submit"]:hover,
+#contactForm button[type="submit"]:hover,
+form button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+}
+
+/* ----------------------------------------------------------
+   Neutralizam vechile variante care iti stricau culorile
+   (le aducem la acelasi look)
+   ---------------------------------------------------------- */
+.btn--gold,
+.btn--ghost,
+.nav__link--cta,
+.btn--order,
+.btn--info {
+    background: rgba(255, 255, 255, 0.78) !important;
+    color: #3b2a22 !important;
+    border: 1px solid rgba(60, 40, 28, 0.22) !important;
+    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06) !important;
+}
+
+.btn--gold:hover,
+.btn--ghost:hover,
+.nav__link--cta:hover,
+.btn--order:hover,
+.btn--info:hover {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+}
+
+/* optional: butoane mici */
+.btn--small {
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+}
+
+/* scoate cardul mare din spatele butoanelor */
+.cta-card {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* elimină și eventualul fundal din secțiune */
+.cta-section {
+    background: transparent !important;
+}
+
+/* centrăm frumos butoanele */
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
 }
