@@ -85,6 +85,10 @@
                 <br>
                 <!-- IMPORTANT: id="orderForm" -->
                 <form id="orderForm" class="form" action="send-order.php" method="post" novalidate>
+                    <!-- Anti-spam -->
+                    <input type="text" name="website" tabindex="-1" autocomplete="off"
+                        style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
+                    <input type="hidden" name="form_time" id="form_time" value="">
                     <div class="form__row">
                         <label class="field">
                             Nume
@@ -466,6 +470,8 @@
                 e.preventDefault();
 
                 if (!validate()) return;
+                const ft = document.getElementById("form_time");
+                if (ft && !ft.value) ft.value = String(Date.now());
 
                 const fd = new FormData(form);
 
@@ -482,8 +488,8 @@
                             Object.keys(data.errors).forEach(k => setError(k, data.errors[k]));
                             return;
                         }
-                        alert("A apărut o problemă la trimitere. Te rugăm să încerci din nou.");
-                        return;
+                        alert("Te rugăm să aștepți câteva secunde și să încerci din nou.");
+                        return; // IMPORTANT
                     }
 
                     const ev = (fd.get("eveniment") || "").toString();
@@ -500,7 +506,7 @@
                     if (window.mesajDetalii) window.mesajDetalii.value = templates.default;
 
                 } catch (err) {
-                    alert("A apărut o problemă la trimitere. Te rugăm să încerci din nou.");
+                    alert("Te rugăm să aștepți câteva secunde și să încerci din nou.");
                 }
             });
         })();

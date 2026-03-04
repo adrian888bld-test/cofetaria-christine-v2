@@ -23,6 +23,19 @@ function respond($ok, $extra = [], $code = 200) {
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond(false, ['error' => 'Method not allowed'], 405);
 }
+// Anti-spam: honeypot
+$hp = trim((string)($_POST['website'] ?? ''));
+if ($hp !== '') {
+    respond(false, ['error' => 'Spam detected'], 400);
+}
+// Anti-spam: time-check (min 8 sec)
+$start = (int)($_POST['form_time'] ?? 0);
+if ($start > 0) {
+    $elapsed = (int) round((microtime(true) * 1000) - $start);
+    if ($elapsed < 8000) {
+        respond(false, ['error' => 'Te rugăm să aștepți câteva secunde și să încerci din nou.'], 400);
+    }
+}
 
 function clean($v) {
     return trim(str_replace(["\r","\n"], ' ', (string)$v));
