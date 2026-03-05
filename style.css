@@ -116,6 +116,28 @@ h3 {
   z-index: 1;
 }
 
+/* Mobile fix: nu folosi fixed background (iOS/Safari issue) */
+@media (max-width: 900px) {
+
+  .page-home,
+  .page-blog,
+  .page-contact,
+  .page-despre-noi {
+    background-attachment: scroll;
+    background-position: center top;
+    background-size: cover;
+  }
+
+  /* și overlay-ul să fie scroll, nu fixed */
+  .page-home::before,
+  .page-blog::before,
+  .page-contact::before,
+  .page-despre-noi::before {
+    position: absolute;
+    /* în loc de fixed */
+  }
+}
+
 /* ridicăm conținutul peste overlay */
 .page-home>* {
   position: relative;
@@ -1632,4 +1654,57 @@ a.link-inline:hover {
   /* aliniază la stânga */
   align-self: flex-start !important;
   /* dacă părintele e flex și îl centrează */
+}
+
+/* ===== BACKGROUND comun (desktop + mobil) ===== */
+body.page-home,
+body.page-blog,
+body.page-contact,
+body.page-despre-noi {
+  position: relative;
+  background: url("./assets/img/home-bg.jpg") center/cover fixed no-repeat;
+}
+
+/* overlay (fără blur) */
+body.page-home::before,
+body.page-blog::before,
+body.page-contact::before,
+body.page-despre-noi::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(251, 250, 247, .82);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* IMPORTANT: ridicăm doar zonele principale peste overlay */
+body.page-home main,
+body.page-home header,
+body.page-home footer,
+body.page-blog main,
+body.page-blog header,
+body.page-blog footer,
+body.page-contact main,
+body.page-contact header,
+body.page-contact footer,
+body.page-despre-noi main,
+body.page-despre-noi header,
+body.page-despre-noi footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobil: iOS/Safari nu iubește "fixed" la background => îl trecem pe scroll
+   dar păstrăm aceeași scalare (cover) */
+@media (max-width: 820px) {
+
+  body.page-home,
+  body.page-blog,
+  body.page-contact,
+  body.page-despre-noi {
+    background-attachment: scroll;
+    /* doar pe mobil */
+    background-position: center top;
+  }
 }

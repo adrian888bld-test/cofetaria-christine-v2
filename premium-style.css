@@ -493,9 +493,7 @@ html {
         transition: none !important;
     }
 
-    body {
-        background-attachment: scroll !important;
-    }
+
 }
 
 /* ========== SECTION SPACING (editorial) ========== */
@@ -1249,5 +1247,17 @@ button.btn.btn--ghost:hover {
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+/* Background fix: iOS / mobile */
+@media (max-width: 900px) {
+
+    .page-home,
+    .page-blog,
+    .page-contact,
+    .page-despre-noi {
+        background-attachment: scroll !important;
+        background-position: center top !important;
     }
 }
