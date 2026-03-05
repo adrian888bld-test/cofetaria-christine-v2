@@ -298,7 +298,7 @@ h3 {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 120px;
+  width: 320px;
   height: 2px;
   background: linear-gradient(90deg,
       var(--gold) 0%,

@@ -1284,3 +1284,101 @@ body.page-produse .category__head h2::after {
     font-weight: 650;
     /* în loc de 800 */
 }
+
+/* HOME – reduce spațiul dintre text și carduri */
+.page-home .section {
+    padding: 24px 0;
+}
+
+/* HOME – distanță mai mare sub titlu */
+.page-home .section__head h1 {
+    margin-bottom: 36px;
+}
+
+/* Intro (default: text normal, fără animație) */
+.section__head .intro {
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 6px;
+    font-weight: 400;
+    opacity: .85;
+
+    overflow: visible;
+    max-width: none;
+    border-right: 0;
+}
+
+/* HOME — HERO premium (fără animații) */
+body.page-home .section__head {
+    max-width: 760px;
+    /* nu mai e lat cât containerul => arată editorial */
+}
+
+body.page-home .section__head h1 {
+    margin-bottom: 18px;
+    /* spațiu frumos între titlu și text */
+}
+
+body.page-home .section__head p {
+    margin-top: 0;
+    max-width: 72ch;
+    /* rânduri elegante, nu foarte lungi */
+    line-height: 1.7;
+}
+
+/* Background texturat pentru paginile principale */
+body.page-produse,
+body.page-evenimente,
+body.page-comanda {
+    background: #fbf3e8 url("assets/img/bg-paper.jpg") repeat;
+}
+
+body.page-produse .products-subnav,
+body.page-evenimente .products-subnav {
+    margin-top: 0px;
+}
+
+/* ==================================================
+   TITLURI SUBLINIATE (fade) — Produse + Evenimente
+   (pune ULTIMUL în premium-style.css)
+   ================================================== */
+
+/* 1) Dăm ancoră corectă titlurilor (ALT-FEL linia poate “fugi”) */
+body.page-produse .category__head h2,
+body.page-produse .category__head h3,
+body.page-evenimente .category__head h2,
+body.page-evenimente .category__head h3 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    /* ajustezi 8–12px cum îți place */
+}
+
+/* 2) Linia “pierdută” */
+body.page-produse .category__head h2::after,
+body.page-produse .category__head h3::after,
+body.page-evenimente .category__head h2::after,
+body.page-evenimente .category__head h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 140px;
+    /* poți 120 / 140 / 160 */
+    height: 2px;
+
+    background: linear-gradient(90deg,
+            var(--gold) 0%,
+            rgba(210, 162, 37, 0.70) 45%,
+            rgba(210, 162, 37, 0.25) 75%,
+            rgba(210, 162, 37, 0) 100%);
+    opacity: .8;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+/* Evenimente – elimină liniile dintre categorii */
+body.page-evenimente .category {
+    border-top: none;
+}
