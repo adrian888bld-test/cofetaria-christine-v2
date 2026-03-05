@@ -6,36 +6,34 @@
 /* ========== TOKENS / VARIABLES ========== */
 :root {
     /* Surfaces & stroke */
-    --surface: rgba(255, 255, 255, 0.78);
-    --surface-2: rgba(255, 255, 255, 0.58);
-    --stroke: rgba(28, 16, 10, 0.08);
-    --stroke-strong: rgba(28, 16, 10, 0.12);
+    --surface: rgba(255, 255, 255, .78);
+    --surface-2: rgba(255, 255, 255, .58);
+    --stroke: rgba(28, 16, 10, .08);
+    --stroke-strong: rgba(28, 16, 10, .12);
 
     /* Shadows & radius */
-    --shadow: 0 12px 34px rgba(16, 10, 6, 0.07);
-    --shadow-soft: 0 8px 22px rgba(16, 10, 6, 0.06);
+    --shadow: 0 12px 34px rgba(16, 10, 6, .07);
+    --shadow-soft: 0 8px 22px rgba(16, 10, 6, .06);
     --radius-lg: 22px;
     --radius: 18px;
     --radius-sm: 14px;
 
     /* Header */
-    --header-surface: rgba(251, 250, 247, 0.72);
-    --header-stroke: rgba(60, 40, 28, 0.10);
-    --header-shadow: 0 10px 30px rgba(16, 10, 6, 0.08);
+    --header-surface: rgba(251, 250, 247, .72);
+    --header-stroke: rgba(60, 40, 28, .10);
+    --header-shadow: 0 10px 30px rgba(16, 10, 6, .08);
 
-    /* Brand colors */
+    /* Brand */
     --nav-text: #3b2a22;
-    --nav-muted: rgba(59, 42, 34, 0.78);
+    --nav-muted: rgba(59, 42, 34, .78);
 
-    /* Gold accents */
-    --gold-soft: rgba(210, 162, 37, 0.32);
-    --gold-strong: rgba(210, 162, 37, 0.55);
+    /* Gold */
+    --gold-soft: rgba(210, 162, 37, .32);
+    --gold-strong: rgba(210, 162, 37, .55);
 
     /* Typography */
     --text: #4a2d22;
-    /* titluri + text principal */
     --muted: #6f6258;
-    /* text secundar */
     --desc-color: #6f6258;
 
     /* Media sizes */
@@ -64,7 +62,6 @@ p,
     color: var(--muted);
 }
 
-/* Smooth scroll */
 html {
     scroll-behavior: smooth;
 }
@@ -97,13 +94,13 @@ html {
 }
 
 .category__head h2 {
-    letter-spacing: -0.02em;
+    letter-spacing: -.02em;
     line-height: 1.15;
     margin-bottom: 10px;
 }
 
 .category__head p {
-    opacity: 0.88;
+    opacity: .88;
     line-height: 1.6;
 }
 
@@ -142,13 +139,13 @@ html {
 
 .product-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 42px rgba(16, 10, 6, 0.10);
+    box-shadow: 0 16px 42px rgba(16, 10, 6, .10);
 }
 
-/* Media (fără bandă albă) */
+/* Media */
 .product-card__media {
     border-bottom: 1px solid var(--stroke);
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(0, 0, 0, .02);
     overflow: hidden;
     line-height: 0;
 }
@@ -180,7 +177,7 @@ html {
     font-weight: 600;
     font-size: 22px;
     color: var(--text);
-    letter-spacing: -0.01em;
+    letter-spacing: -.01em;
     margin: 0 0 6px;
 }
 
@@ -206,22 +203,22 @@ html {
 .price {
     font-weight: 600;
     font-size: 18px;
-    letter-spacing: -0.01em;
+    letter-spacing: -.01em;
 }
 
 /* Badge */
 .badge {
-    border: 1px solid rgba(210, 162, 37, 0.22) !important;
-    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(210, 162, 37, .22) !important;
+    background: rgba(255, 255, 255, .55);
     border-radius: 999px;
     padding: 6px 10px;
     font-size: 12px;
     line-height: 1;
     white-space: nowrap;
-    opacity: 0.85;
+    opacity: .85;
 }
 
-@media (max-width: 640px) {
+@media (max-width:640px) {
     .product-card {
         border-radius: var(--radius);
     }
@@ -231,66 +228,100 @@ html {
     }
 }
 
-/* =========================
-   BUTOANE SITE
-   ========================= */
+/* ==========================================================
+   BUTTONS (UN SINGUR SISTEM GLOBAL)
+   Alb + text maro, hover elegant (NU se face maro plin)
+   ========================================================== */
+.btn,
+a.btn,
+button.btn,
+input[type="submit"].btn,
+form button[type="submit"] {
+    -webkit-appearance: none;
+    appearance: none;
 
-.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
 
-    padding: 10px 20px;
+    padding: 11px 18px;
     border-radius: 999px;
 
-    background: #ffffff;
-    border: 1px solid #4a2d22;
+    background: rgba(255, 255, 255, 0.78);
+    color: #3b2a22;
+    border: 1px solid rgba(60, 40, 28, 0.22);
 
-    color: #4a2d22;
-    font-weight: 500;
-
+    font: inherit;
+    font-weight: 600;
+    letter-spacing: .02em;
     text-decoration: none;
     cursor: pointer;
 
-    transition: all .2s ease;
+    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06);
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
 }
 
-/* Hover */
-.btn:hover {
-    background: #4a2d22;
-    color: #ffffff;
-    border-color: #4a2d22;
+.btn:hover,
+a.btn:hover,
+button.btn:hover,
+form button[type="submit"]:hover {
+    background: rgba(255, 255, 255, 0.92);
+    color: #3b2a22;
+    border-color: rgba(210, 162, 37, 0.55);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10);
 }
 
-/* Active click */
 .btn:active {
     transform: translateY(1px);
 }
 
-.btn:hover {
-    background: #4a2d22;
-    color: #ffffff;
-    transform: translateY(-2px);
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(210, 162, 37, 0.18), 0 14px 28px rgba(16, 10, 6, 0.10);
 }
 
-/* ========== HEADER (stable) ========== */
+a.btn:visited {
+    color: #3b2a22;
+}
+
+.btn:disabled,
+button.btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* mici */
+.btn--small {
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+/* ==========================================================
+   HEADER — transparent normal, vizibil doar la scroll
+   ========================================================== */
 .header {
     position: sticky;
     top: 0;
     z-index: 1000;
 
-    background: rgba(251, 250, 247, 0.72);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    border-bottom: 1px solid var(--header-stroke);
-    box-shadow: var(--header-shadow);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 /* scrolled state (din JS) */
 .header.header--scrolled {
-    background: rgba(251, 250, 247, 0.88);
-    box-shadow: 0 12px 34px rgba(16, 10, 6, 0.10);
+    background: rgba(251, 243, 232, 0.70);
+    border-bottom: 1px solid rgba(60, 40, 28, 0.10);
+    box-shadow: 0 10px 30px rgba(16, 10, 6, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 /* Layout split: nav stânga | logo | nav dreapta */
@@ -300,7 +331,6 @@ html {
     align-items: center;
     gap: 16px;
     padding: 0 0;
-    /* tu ai vrut banda mai “tight” */
 }
 
 .nav--left {
@@ -374,7 +404,7 @@ html {
     transform: translateY(0);
 }
 
-/* CTA */
+/* CTA din meniu (nu e .btn, nu îl atingem) */
 .nav__link--cta {
     color: var(--nav-text);
     background: rgba(255, 255, 255, 0.75);
@@ -387,11 +417,6 @@ html {
     background: rgba(255, 255, 255, 0.90);
     border-color: var(--gold-strong);
     transform: translateY(-1px);
-}
-
-.nav__link--cta[aria-current="page"] {
-    background: rgba(255, 255, 255, 0.90);
-    border-color: var(--gold-strong);
 }
 
 /* Hamburger */
@@ -443,9 +468,7 @@ html {
     justify-content: center;
 }
 
-@media (max-width: 980px) {
-
-    /* Pe mobil: logo stânga + hamburger dreapta */
+@media (max-width:980px) {
     .header__inner--split {
         display: flex;
         align-items: center;
@@ -466,12 +489,10 @@ html {
         height: 72px;
     }
 
-    /* Performanță pe mobil */
+    /* performanță pe mobil */
     .header {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgba(251, 250, 247, 0.96);
-        box-shadow: 0 8px 18px rgba(16, 10, 6, 0.08);
     }
 
     .product-card {
@@ -486,17 +507,9 @@ html {
     .nav__link:hover {
         background: transparent;
     }
-
-    .product-card,
-    .btn,
-    .nav__link {
-        transition: none !important;
-    }
-
-
 }
 
-/* ========== SECTION SPACING (editorial) ========== */
+/* ========== SECTION SPACING ========== */
 section {
     padding-top: clamp(28px, 4vw, 52px);
     padding-bottom: clamp(28px, 4vw, 52px);
@@ -557,13 +570,14 @@ section {
     color: var(--nav-text);
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(210, 162, 37, 0.22);
-    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
 }
 
 .footer__right a:hover {
     transform: translateY(-2px);
     box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10);
     background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(210, 162, 37, 0.55);
 }
 
 .footer__right svg {
@@ -571,7 +585,7 @@ section {
     height: 20px;
 }
 
-@media (max-width: 980px) {
+@media (max-width:980px) {
     .footer__premium-inner {
         flex-direction: column;
         gap: 24px;
@@ -633,11 +647,10 @@ section {
    ORDER FORM (Comandă tort) — DOAR #orderForm
    ========================================================== */
 
-/* Formular mai îngust + ALINIAT STÂNGA (cum era) */
+/* Formular mai îngust + ALINIAT STÂNGA */
 #orderForm {
     max-width: 780px;
     margin: 0;
-    /* stânga, nu pe mijloc */
 }
 
 /* Rânduri în grid */
@@ -649,18 +662,17 @@ section {
     margin-bottom: 10px;
 }
 
-@media (max-width: 820px) {
+@media (max-width:820px) {
     #orderForm .form__row {
         grid-template-columns: 1fr;
     }
 }
 
-/* Câmp + spacing între titlu și input */
+/* Câmp */
 #orderForm .field {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    /* aici “dezlipim” titlul de input */
     min-width: 0;
 }
 
@@ -672,103 +684,7 @@ section {
     box-sizing: border-box;
 }
 
-/* Înălțimi fine */
-#orderForm input[type="text"],
-#orderForm input[type="tel"],
-#orderForm input[type="email"],
-#orderForm input[type="date"],
-#orderForm select {
-    height: 40px;
-    border-radius: 14px;
-}
-
-/* Number (Safari) */
-#orderForm input[type="number"] {
-    height: 40px;
-    border-radius: 14px;
-    line-height: normal;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-/* Textarea */
-#orderForm .field textarea {
-    border-radius: 16px;
-}
-
-/* Data: “centrată” mai bine pe Safari */
-#orderForm input[type="date"] {
-    line-height: 40px;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 14px;
-}
-
-/* Erori */
-#orderForm .field-error {
-    display: block;
-    margin-top: 4px;
-}
-
-/* Rândul de aniversare (Tip tort + Platou) să nu lase gol mare */
-#orderForm #aniversareRow2 {
-    margin-bottom: 2px;
-}
-
-/* Mesajul de sub platou: lipit + mic + ALINIAT STÂNGA + o singură linie */
-#orderForm .field-help {
-    display: block;
-    margin-top: 2px;
-    font-size: 9px;
-    line-height: 1.2;
-    opacity: .65;
-    text-align: left;
-    width: 100%;
-    white-space: nowrap;
-    /* 1 linie */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* dacă nu încape pe ecrane mici */
-}
-
-/* 1) IMPORTANT: nu mai lăsăm field-error gol să ocupe spațiu */
-#orderForm .field-error:empty {
-    display: none;
-    margin: 0;
-    padding: 0;
-}
-
-/* 2) Mesajul "Cantitatea..." fix sub select */
-#orderForm .field-help {
-    margin-top: -4px;
-    /* îl “tragem” mai sus (ajustează -2 / -4 / -6) */
-    font-size: 9.5px;
-    line-height: 1.2;
-    opacity: .65;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* 3) Numar persoane: îl facem IDENTIC ca înălțime/padding cu restul */
-#orderForm input[type="number"] {
-    height: 40px;
-    padding: 0 14px;
-    /* scoate padding-top/bottom care îl “urcă” */
-    line-height: 40px;
-    /* centrează vizual */
-    box-sizing: border-box;
-}
-
-/* Safari/Chrome: opțional (stabilizează aspectul input number) */
-#orderForm input[type="number"] {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* ===== FIX: aliniază perfect "Număr persoane" cu "Tip eveniment" ===== */
-
-/* 1) Aceeași înălțime pentru toate input/select din orderForm */
+/* Înălțimi consistente */
 #orderForm input[type="text"],
 #orderForm input[type="tel"],
 #orderForm input[type="email"],
@@ -779,92 +695,70 @@ section {
     line-height: 40px !important;
     padding: 0 14px !important;
     box-sizing: border-box !important;
-}
-
-/* 2) Number: scoatem orice padding vertical care îl urcă/jos */
-#orderForm input[type="number"] {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-/* 3) Safari/Chrome: stabilizare stepper (să nu “umfle” câmpul) */
-#orderForm input[type="number"] {
-    -webkit-appearance: none;
-    appearance: none;
-}
-
-/* ===== ORDER FORM: aliniază SELECT cu NUMBER (Safari/Chrome safe) ===== */
-#orderForm #tipEveniment,
-#orderForm #nrPersoane {
-    height: 40px !important;
-    min-height: 40px !important;
-    box-sizing: border-box !important;
-    padding: 0 14px !important;
     border-width: 1px !important;
-    /* ca focus-ul să nu schimbe grosimea */
+    border-radius: 14px;
 }
 
-/* Select: îl facem să se comporte ca un input */
-#orderForm #tipEveniment {
-    line-height: 40px !important;
-    -webkit-appearance: none;
-    /* Safari */
-    appearance: none;
-    background-position: right 12px center;
-    /* dacă ai icon */
-}
-
-/* Number: neutralizăm baseline ciudat + stepper “umflat” */
-#orderForm #nrPersoane {
-    line-height: 40px !important;
+#orderForm input[type="number"] {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
-/* IMPORTANT: erorile goale să nu ocupe spațiu (altfel îți “căde” o coloană) */
+#orderForm #tipEveniment {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#orderForm .field textarea {
+    border-radius: 16px;
+}
+
+#orderForm input[type="date"] {
+    padding-right: 14px;
+}
+
+/* Erori */
+#orderForm .field-error {
+    display: block;
+    margin-top: 4px;
+}
+
 #orderForm .field-error:empty {
     display: none !important;
+    margin: 0;
+    padding: 0;
 }
 
-/* mic fine-tune doar dacă Safari încă e mofturos (lasă 0px dacă e ok) */
-@supports (-webkit-touch-callout: none) {
-    #orderForm #nrPersoane {
-        transform: translateY(0px);
-    }
+/* Helper text sub platou */
+#orderForm .field-help {
+    display: block;
+    margin-top: -4px;
+    font-size: 9.5px;
+    line-height: 1.2;
+    opacity: .65;
+    text-align: left;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Când e ascuns, să fie 100% scos din layout (uneori Safari e mofturos) */
-#orderForm #nrPersoaneWrap[hidden] {
-    display: none !important;
-}
-
-/* IMPORTANT: hidden trebuie să bată peste display:grid */
+/* hidden trebuie să bată peste display:grid */
 #orderForm [hidden] {
     display: none !important;
 }
 
-/* =========================
-   ORDER FORM — Mobile: aceeași structură, stabil
-   ========================= */
+#orderForm #nrPersoaneWrap[hidden] {
+    display: none !important;
+}
 
-@media (max-width: 820px) {
-
-    /* fiecare rând devine 1 coloană */
-    #orderForm .form__row {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* când Număr persoane e ascuns, rândul 3 rămâne “curat” */
-    #orderForm #nrPersoaneWrap[hidden] {
-        display: none !important;
-    }
-
-    /* rândul de Aniversare (Tip tort + Platou) tot 1 coloană pe mobil */
+@media (max-width:820px) {
     #orderForm #aniversareRow2 {
         grid-template-columns: 1fr !important;
     }
 
-    /* helper text sub platou să nu fie tăiat pe mobil */
     #orderForm .field-help {
         white-space: normal !important;
         overflow: visible !important;
@@ -872,281 +766,12 @@ section {
     }
 }
 
-/* FORCE: orice element cu [hidden] din formular NU apare */
-#orderForm [hidden] {
-    display: none !important;
-}
-
-/* Butoane: pe hover nu mai dispare textul */
-.btn,
-.btn:visited {
-    color: #4a2d22;
-    text-decoration: none;
-}
-
-.btn:hover,
-.btn:focus-visible {
-    color: #4a2d22 !important;
-    text-decoration: none;
-}
-
-/* dacă ai icon (svg) în buton */
-.btn svg {
-    fill: currentColor;
-    stroke: currentColor;
-}
-
-/* BUTOANE PRIMARY (maro) */
-.btn--primary,
-.btn--order,
-.btn--submit {
-    background: #4a2d22;
-    border-color: #4a2d22;
-    color: #d4af37;
-    /* auriu */
-}
-
-.btn--primary:hover,
-.btn--order:hover,
-.btn--submit:hover {
-    background: #3a2219;
-    border-color: #3a2219;
-    color: #d4af37;
-}
-
 /* ==========================================================
-   BUTTONS — UNIFY (global)
-   Pastreaza toate butoanele elegante: alb + text maro
-   Pune ULTIMUL in CSS (premium-style.css / style.css)
+   CONTACT – oprește hover-ul “maro” DOAR pe Contact
    ========================================================== */
-
-/* baza: <a class="btn"> si <button class="btn"> */
-.btn,
-a.btn,
-button.btn,
-input[type="submit"].btn {
-    -webkit-appearance: none;
-    appearance: none;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-    padding: 11px 18px;
-    border-radius: 999px;
-
-    background: rgba(255, 255, 255, 0.78) !important;
-    color: #3b2a22 !important;
-    border: 1px solid rgba(60, 40, 28, 0.22) !important;
-
-    font-family: inherit;
-    font-weight: 600;
-    letter-spacing: .02em;
-    text-decoration: none !important;
-
-    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06);
-    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease, color .18s ease;
-}
-
-/* hover/focus: NU inversam culorile, doar rafinam */
-.btn:hover,
-a.btn:hover,
-button.btn:hover,
-input[type="submit"].btn:hover {
-    background: rgba(255, 255, 255, 0.92) !important;
-    color: #3b2a22 !important;
-    border-color: rgba(210, 162, 37, 0.55) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10);
-}
-
-.btn:focus-visible,
-a.btn:focus-visible,
-button.btn:focus-visible,
-input[type="submit"].btn:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(210, 162, 37, 0.18), 0 14px 28px rgba(16, 10, 6, 0.10);
-}
-
-/* vizitat sa ramana maro (nu mov) */
-a.btn:visited {
-    color: #3b2a22 !important;
-}
-
-/* dezactivat */
-.btn:disabled,
-button.btn:disabled {
-    opacity: .55;
-    cursor: not-allowed;
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-/* ----------------------------------------------------------
-   IMPORTANT: submit-urile din formulare (daca nu au .btn)
-   (Trimite solicitarea etc.)
-   ---------------------------------------------------------- */
-#orderForm button[type="submit"],
-#contactForm button[type="submit"],
-form button[type="submit"] {
-    background: rgba(255, 255, 255, 0.78) !important;
-    color: #3b2a22 !important;
-    border: 1px solid rgba(60, 40, 28, 0.22) !important;
-    border-radius: 999px !important;
-    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06) !important;
-}
-
-#orderForm button[type="submit"]:hover,
-#contactForm button[type="submit"]:hover,
-form button[type="submit"]:hover {
-    background: rgba(255, 255, 255, 0.92) !important;
-    color: #3b2a22 !important;
-    border-color: rgba(210, 162, 37, 0.55) !important;
-}
-
-/* ----------------------------------------------------------
-   Neutralizam vechile variante care iti stricau culorile
-   (le aducem la acelasi look)
-   ---------------------------------------------------------- */
-.btn--gold,
-.btn--ghost,
-.nav__link--cta,
-.btn--order,
-.btn--info {
-    background: rgba(255, 255, 255, 0.78) !important;
-    color: #3b2a22 !important;
-    border: 1px solid rgba(60, 40, 28, 0.22) !important;
-    box-shadow: 0 10px 22px rgba(16, 10, 6, 0.06) !important;
-}
-
-.btn--gold:hover,
-.btn--ghost:hover,
-.nav__link--cta:hover,
-.btn--order:hover,
-.btn--info:hover {
-    background: rgba(255, 255, 255, 0.92) !important;
-    color: #3b2a22 !important;
-    border-color: rgba(210, 162, 37, 0.55) !important;
-}
-
-/* optional: butoane mici */
-.btn--small {
-    padding: 10px 16px !important;
-    font-size: 14px !important;
-}
-
-/* scoate cardul mare din spatele butoanelor */
-.cta-card {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-}
-
-/* elimină și eventualul fundal din secțiune */
-.cta-section {
-    background: transparent !important;
-}
-
-/* centrăm frumos butoanele */
-.cta-actions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-/* ===== HEADER: fără bandă (normal), bandă doar la scroll ===== */
-.header {
-    background: transparent !important;
-    border: none !important;
-    border-bottom: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-.header.header--scrolled {
-    background: rgba(251, 243, 232, 0.70) !important;
-    border-bottom: 1px solid rgba(60, 40, 28, 0.10) !important;
-    box-shadow: 0 10px 30px rgba(16, 10, 6, 0.08) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-}
-
-.header {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-.header.header--scrolled {
-    background: rgba(251, 243, 232, 0.70) !important;
-    border-bottom: 1px solid rgba(60, 40, 28, 0.10) !important;
-    box-shadow: 0 10px 30px rgba(16, 10, 6, 0.08) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(10px) !important;
-}
-
-/* ==========================================================
-   FIX FINAL BUTOANE (override peste tot site-ul)
-   Pune ULTIMUL in premium-style.css
-   ========================================================== */
-
-a.btn,
-button.btn {
-    background: var(--text);
-    color: #fff;
-    border-color: var(--text);
-}
-
-/* Hover coerent, NU maro */
-a.btn:hover,
-button.btn:hover {
-    background: rgba(255, 255, 255, 0.92) !important;
-    color: #3b2a22 !important;
-    border-color: rgba(210, 162, 37, 0.55) !important;
-    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
-    transform: translateY(-2px);
-}
-
-/* Ghost */
-a.btn.btn--ghost,
-button.btn.btn--ghost {
-    background: transparent;
-    color: var(--text);
-    border-color: var(--line);
-}
-
-a.btn.btn--ghost:hover,
-button.btn.btn--ghost:hover {
-    background: rgba(255, 255, 255, 0.92) !important;
-    color: #3b2a22 !important;
-    border-color: rgba(210, 162, 37, 0.55) !important;
-    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
-    transform: translateY(-2px);
-}
-
-/* CONTACT — fix hover butoane Google Maps / Waze (fără maro) */
-.address-actions .btn,
-.address-actions .btn:hover,
-.address-actions .btn:focus-visible {
-    background: rgba(255, 255, 255, 0.92) !important;
-    color: #3b2a22 !important;
-    border-color: rgba(210, 162, 37, 0.55) !important;
-}
-
-/* =========================================
-   CONTACT – oprește hover-ul maro pe linkurile din carduri
-   (fără să strici restul site-ului)
-   ========================================= */
-
-/* 1) Butoanele Google Maps / Waze – hover elegant, ca restul butoanelor */
 .page-contact .address-actions .btn:hover,
-.page-contact .address-actions .btn:focus-visible {
+.page-contact .address-actions .btn:focus-visible,
+.page-contact .address-actions .btn:active {
     background: rgba(255, 255, 255, 0.92) !important;
     color: #3b2a22 !important;
     border-color: rgba(210, 162, 37, 0.55) !important;
@@ -1154,7 +779,7 @@ button.btn.btn--ghost:hover {
     transform: translateY(-2px) !important;
 }
 
-/* 2) Social media – să nu se mai facă maro */
+/* Social media din Contact */
 .page-contact .contact-social a:hover,
 .page-contact .contact-social a:focus-visible {
     background: rgba(255, 255, 255, 0.92) !important;
@@ -1164,24 +789,9 @@ button.btn.btn--ghost:hover {
     transform: translateY(-2px) !important;
 }
 
-/* CONTACT – Google Maps / Waze: oprește hover-ul maro (forțat) */
-.page-contact .address-actions a.btn:hover,
-.page-contact .address-actions a.btn:focus-visible,
-.page-contact .address-actions a.btn:active {
-    background: rgba(255, 255, 255, 0.92) !important;
-    color: #3b2a22 !important;
-    border-color: rgba(210, 162, 37, 0.55) !important;
-    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
-    transform: translateY(-2px) !important;
-}
-
-/* dacă ai o regulă generică pe linkuri în carduri, o anulăm DOAR aici */
-.page-contact .address-actions a.btn:hover * {
-    color: #3b2a22 !important;
-}
-
-/* MODAL POPUP PREMIUM */
-
+/* ==========================================================
+   MODAL POPUP PREMIUM
+   ========================================================== */
 .modal {
     position: fixed;
     inset: 0;
@@ -1195,7 +805,6 @@ button.btn.btn--ghost:hover {
     display: flex;
 }
 
-/* fundalul din spate */
 .modal__backdrop {
     position: absolute;
     inset: 0;
@@ -1203,7 +812,6 @@ button.btn.btn--ghost:hover {
     backdrop-filter: blur(3px);
 }
 
-/* cardul popup */
 .modal__card {
     position: relative;
     max-width: 520px;
@@ -1216,7 +824,6 @@ button.btn.btn--ghost:hover {
     animation: modalFade .25s ease;
 }
 
-/* titlu */
 .modal__title {
     font-family: "Playfair Display", serif;
     font-size: 30px;
@@ -1224,7 +831,6 @@ button.btn.btn--ghost:hover {
     color: #3b2a22;
 }
 
-/* text */
 .modal__text {
     font-size: 16px;
     line-height: 1.6;
@@ -1232,10 +838,9 @@ button.btn.btn--ghost:hover {
     margin-bottom: 28px;
 }
 
-/* buton */
 .modal__card .btn {
     margin-top: 6px;
-    min-width: 90px;
+    min-width: 110px;
 }
 
 @keyframes modalFade {
@@ -1250,14 +855,432 @@ button.btn.btn--ghost:hover {
     }
 }
 
-/* Background fix: iOS / mobile */
-@media (max-width: 900px) {
+/* ==========================================================
+   Background fix: iOS / mobile (păstrează cover, dar stabil)
+   ========================================================== */
+@media (max-width:900px) {
 
     .page-home,
     .page-blog,
     .page-contact,
     .page-despre-noi {
         background-attachment: scroll !important;
-        background-position: center top !important;
+        background-position: 50% 35% !important;
     }
+}
+
+/* CONTACT — Google Maps / Waze: NU maro pe hover (override final) */
+.page-contact .address-actions .btn:hover,
+.page-contact .address-actions .btn:focus-visible,
+.page-contact .address-actions .btn:active {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* ==== FIX FINAL (CONTACT) — Google Maps / Waze NU devin maro ==== */
+body.page-contact .address-actions a.btn,
+body.page-contact .address-actions button.btn {
+    background: transparent !important;
+    color: var(--text) !important;
+    border-color: var(--line) !important;
+}
+
+body.page-contact .address-actions a.btn:hover,
+body.page-contact .address-actions a.btn:focus-visible,
+body.page-contact .address-actions a.btn:active,
+body.page-contact .address-actions button.btn:hover,
+body.page-contact .address-actions button.btn:focus-visible,
+body.page-contact .address-actions button.btn:active {
+    background: rgba(255, 255, 255, 0.92) !important;
+    color: #3b2a22 !important;
+    border-color: rgba(210, 162, 37, 0.55) !important;
+    box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* dacă există ceva în interior care rămâne alb/maro aiurea */
+body.page-contact .address-actions a.btn:hover *,
+body.page-contact .address-actions button.btn:hover * {
+    color: #3b2a22 !important;
+}
+
+/* CTA – scoate “banda/cardul” de fundal peste tot, rămân doar butoanele */
+.cta-card {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+}
+
+.cta-section {
+    background: transparent !important;
+}
+
+/* ==========================================================
+   PRODUSE — Sticky chips (DOAR butoanele, fără bandă)
+   Pune ULTIMUL în premium-style.css
+   ========================================================== */
+
+/* 0) Offset corect pentru header-ul tău (logo mare) — DOAR pe Produse */
+body.page-produse {
+    --produse-sticky-top: 138px;
+}
+
+/* desktop */
+
+@media (max-width: 980px) {
+    body.page-produse {
+        --produse-sticky-top: 92px;
+    }
+
+    /* mobil */
+}
+
+/* 1) Sticky nu merge dacă un părinte are overflow ascuns — fix local */
+body.page-produse .section,
+body.page-produse .section .container,
+body.page-produse .section__head {
+    overflow: visible !important;
+}
+
+/* 2) Bara cu chips: sticky + TRANSPARENT (fără bandă) */
+body.page-produse .category-nav {
+    position: sticky !important;
+    top: var(--produse-sticky-top) !important;
+    z-index: 2000 !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+
+    padding: 10px 0 14px !important;
+    /* doar spațiu, fără fundal */
+    margin: 18px 0 28px !important;
+
+    display: flex !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+}
+
+/* 3) Ca să nu stea lipită “urât” de header când e sticky */
+body.page-produse .category-nav::before {
+    content: "";
+    position: absolute;
+    inset: -12px 0 auto 0;
+    height: 12px;
+    background: transparent;
+}
+
+/* PRODUSE – elimină banda din spatele chips */
+body.page-produse .section__head {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-bottom: 0 !important;
+}
+
+/* asigură că nici wrapperul nu are fundal */
+body.page-produse .section__head .category-nav {
+    background: transparent !important;
+}
+
+/* PRODUSE – KILL banda din spatele chips (oricine ar fi vinovatul) */
+body.page-produse .section,
+body.page-produse .section .container,
+body.page-produse .section__head,
+body.page-produse .section__head .category-nav {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* dacă banda e făcută din pseudo-element */
+body.page-produse .section__head::before,
+body.page-produse .section__head::after,
+body.page-produse .category-nav::before,
+body.page-produse .category-nav::after {
+    content: none !important;
+}
+
+/* PRODUSE — scoate “banda” din HERO (doar pe pagina Produse) */
+body.page-produse .section--hero,
+body.page-produse .section--hero .container,
+body.page-produse .section--hero .section__head {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* dacă banda e din pseudo-elemente (super des la “linii”/“benzi”) */
+body.page-produse .section--hero::before,
+body.page-produse .section--hero::after,
+body.page-produse .section--hero .container::before,
+body.page-produse .section--hero .container::after,
+body.page-produse .section--hero .section__head::before,
+body.page-produse .section--hero .section__head::after {
+    content: none !important;
+}
+
+/* ==========================================================
+   PRODUSE — submeniu sticky FĂRĂ bandă (rămân doar chips)
+   ========================================================== */
+body.page-produse .products-subnav,
+body.page-produse .products-subnav .products-subnav__inner {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* dacă “banda” vine din pseudo-elemente */
+body.page-produse .products-subnav::before,
+body.page-produse .products-subnav::after,
+body.page-produse .products-subnav .products-subnav__inner::before,
+body.page-produse .products-subnav .products-subnav__inner::after {
+    content: none !important;
+}
+
+/* sticky corect: să NU intre sub header */
+body.page-produse .products-subnav {
+    position: sticky !important;
+    top: calc(var(--header-offset, 84px) + 10px) !important;
+    /* 10px spațiu sub header */
+    z-index: 200 !important;
+}
+
+/* un pic de aer sub HERO, ca să nu fie lipit */
+body.page-produse .section--hero {
+    padding-bottom: 10px !important;
+}
+
+body.page-produse .products-subnav {
+    margin-top: 10px !important;
+}
+
+/* ==================================================
+   PRODUSE — compactare spații (hero → chips → produse)
+   ================================================== */
+
+/* mai puțin spațiu sub titlul "Produse" */
+body.page-produse .section--hero {
+    padding-bottom: 0px !important;
+}
+
+/* submeniul mai aproape de titlu */
+body.page-produse .products-subnav {
+    margin-top: 0px !important;
+    margin-bottom: 2px !important;
+}
+
+/* prima categorie mai aproape de chips */
+body.page-produse .category {
+    padding-top: 0px !important;
+}
+
+/* PRODUSE — sticky chips: FĂRĂ OPACITATE / FĂRĂ BLUR */
+body.page-produse .products-subnav {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* și inner-ul (containerul din subnav) */
+body.page-produse .products-subnav__inner {
+    background: transparent !important;
+}
+
+body.page-produse .chip {
+    background: rgba(255, 255, 255, 0.92) !important;
+    /* sau 1 pentru complet opac */
+}
+
+/* PRODUSE — offset corect pentru ancore (chips menu) */
+body.page-produse .category {
+    scroll-margin-top: 200px;
+}
+
+/* PRODUSE — scoate liniile dintre categorii */
+body.page-produse .category {
+    border: none !important;
+}
+
+body.page-produse .category+.category {
+    border-top: none !important;
+}
+
+/* dacă vine din carduri */
+body.page-produse .product-card__meta {
+    border-top: none !important;
+}
+
+/* ==================================================
+   PRODUSE — linie elegantă fade sub fiecare categorie
+   ================================================== */
+
+body.page-produse .category__head h2 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+}
+
+body.page-produse .category__head h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120px;
+    height: 2px;
+
+    background: linear-gradient(90deg,
+            var(--gold) 0%,
+            var(--gold) 40%,
+            rgba(210, 162, 37, 0.35) 70%,
+            rgba(210, 162, 37, 0) 100%);
+}
+
+/* ===============================
+   PRODUSE — SUBMENIU MOBIL: 1 RÂND (CIocan)
+   =============================== */
+@media (max-width: 900px) {
+
+    /* bara sticky să fie complet transparentă */
+    body.page-produse .products-subnav {
+        position: sticky;
+        top: 72px;
+        z-index: 3000;
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    body.page-produse .products-subnav__inner {
+        padding: 6px 0 !important;
+    }
+
+    /* IMPORTANT: nu flex -> 1 linie garantat */
+    body.page-produse .category-nav {
+        display: block !important;
+        white-space: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        padding: 6px 2px 10px !important;
+        scrollbar-width: none;
+    }
+
+    body.page-produse .category-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    body.page-produse .chip {
+        display: inline-flex !important;
+        vertical-align: middle;
+        white-space: nowrap !important;
+
+        font-size: 12px;
+        padding: 8px 10px;
+        border-radius: 999px;
+
+        margin-right: 10px;
+        /* în loc de gap */
+        max-width: 70vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    body.page-produse .chip:last-child {
+        margin-right: 2px;
+    }
+
+    /* ca să nu-ți ajungă titlul lipit sub meniu după click */
+    body.page-produse .category {
+        scroll-margin-top: 150px;
+    }
+}
+
+/* offset pentru scroll din submeniu */
+.page-produse .category {
+    scroll-margin-top: 170px;
+}
+
+.products-subnav .category-nav {
+    scroll-behavior: smooth;
+}
+
+/* Chips active (vizual) */
+.products-subnav .chip.is-active {
+    border-color: rgba(210, 162, 37, .55);
+    box-shadow: 0 10px 24px rgba(16, 10, 6, .10);
+}
+
+/* Submeniul să NU fie opac (cum ai vrut) */
+.products-subnav {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Scroll smooth pentru glisarea submeniului */
+.products-subnav .category-nav {
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.products-subnav .category-nav::-webkit-scrollbar {
+    display: none;
+}
+
+/* ================================
+   PRODUSE — chip activ: subliniere fină, fără “inel” gros
+   (desktop + mobile)
+   ================================ */
+
+/* scoatem accentul agresiv (outline / border dublu / shadow) */
+.page-produse .category-nav .chip.is-active {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: rgba(60, 40, 28, 0.22) !important;
+    /* ca restul */
+    position: relative;
+}
+
+/* subliniere “pierdută” (gradient soft) */
+.page-produse .category-nav .chip.is-active::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 6px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg,
+            rgba(210, 162, 37, 0) 0%,
+            rgba(210, 162, 37, .55) 35%,
+            rgba(210, 162, 37, .55) 65%,
+            rgba(210, 162, 37, 0) 100%);
+    opacity: .85;
+}
+
+/* opțional: un mic “boost” de text, dar fără bold agresiv */
+.page-produse .category-nav .chip.is-active {
+    font-weight: 650;
+    /* în loc de 800 */
 }

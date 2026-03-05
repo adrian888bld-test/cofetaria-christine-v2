@@ -76,73 +76,6 @@ h3 {
   display: none;
 }
 
-/* =========================
-   HOME BACKGROUND (HOME + ALTE PAGINI)
-   ========================= */
-.page-home,
-.page-blog,
-.page-contact,
-.page-despre-noi {
-  position: relative;
-  background: url("./assets/img/home-bg.jpg") center/cover fixed no-repeat;
-}
-
-.page-home::before,
-.page-blog::before,
-.page-contact::before,
-.page-despre-noi::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(251, 250, 247, .82);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* FIX: overlay-ul de fundal să stea în spate, conținutul deasupra */
-.page-home>header,
-.page-home>main,
-.page-home>footer,
-.page-blog>header,
-.page-blog>main,
-.page-blog>footer,
-.page-contact>header,
-.page-contact>main,
-.page-contact>footer,
-.page-despre-noi>header,
-.page-despre-noi>main,
-.page-despre-noi>footer {
-  position: relative;
-  z-index: 1;
-}
-
-/* Mobile fix: nu folosi fixed background (iOS/Safari issue) */
-@media (max-width: 900px) {
-
-  .page-home,
-  .page-blog,
-  .page-contact,
-  .page-despre-noi {
-    background-attachment: scroll;
-    background-position: center top;
-    background-size: cover;
-  }
-
-  /* și overlay-ul să fie scroll, nu fixed */
-  .page-home::before,
-  .page-blog::before,
-  .page-contact::before,
-  .page-despre-noi::before {
-    position: absolute;
-    /* în loc de fixed */
-  }
-}
-
-/* ridicăm conținutul peste overlay */
-.page-home>* {
-  position: relative;
-  z-index: 1;
-}
 
 /* =========================
    HEADER / NAV
@@ -792,12 +725,6 @@ a.link-inline:hover {
   color: var(--text);
   border: 1px solid var(--line);
   box-shadow: 0 6px 18px rgba(20, 20, 20, .05);
-}
-
-.address-actions .btn:hover {
-  background: var(--text);
-  color: #fff;
-  border-color: var(--text);
 }
 
 .address-actions .btn--small {
@@ -1656,16 +1583,32 @@ a.link-inline:hover {
   /* dacă părintele e flex și îl centrează */
 }
 
-/* ===== BACKGROUND comun (desktop + mobil) ===== */
+/* FIX FINAL: Google Maps + Waze (NU maro pe hover) */
+.page-contact .address-actions .btn:hover,
+.page-contact .address-actions .btn:focus-visible,
+.page-contact .address-actions .btn:active {
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: #3b2a22 !important;
+  border-color: rgba(210, 162, 37, 0.55) !important;
+  box-shadow: 0 14px 28px rgba(16, 10, 6, 0.10) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* =========================================
+   BACKGROUND UNIC — stabil pe mobil + desktop
+   (folosește body::before în loc de background-attachment: fixed)
+   ========================================= */
+
 body.page-home,
 body.page-blog,
 body.page-contact,
 body.page-despre-noi {
+  background: none !important;
+  /* important: nu mai folosim background pe body */
   position: relative;
-  background: url("./assets/img/home-bg.jpg") center/cover fixed no-repeat;
 }
 
-/* overlay (fără blur) */
+/* imaginea reală (fixă) */
 body.page-home::before,
 body.page-blog::before,
 body.page-contact::before,
@@ -1673,38 +1616,38 @@ body.page-despre-noi::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: rgba(251, 250, 247, .82);
-  z-index: 0;
+  z-index: -2;
+  background: url("./assets/img/home-bg.jpg") center / cover no-repeat;
+  transform: translateZ(0);
+  /* ajută Safari */
+}
+
+/* overlay-ul (luminează) */
+body.page-home::after,
+body.page-blog::after,
+body.page-contact::after,
+body.page-despre-noi::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(251, 250, 247, 0.82);
   pointer-events: none;
 }
 
-/* IMPORTANT: ridicăm doar zonele principale peste overlay */
-body.page-home main,
+/* doar ca să fii sigur că tot conținutul e peste overlay */
 body.page-home header,
+body.page-home main,
 body.page-home footer,
-body.page-blog main,
 body.page-blog header,
+body.page-blog main,
 body.page-blog footer,
-body.page-contact main,
 body.page-contact header,
+body.page-contact main,
 body.page-contact footer,
-body.page-despre-noi main,
 body.page-despre-noi header,
+body.page-despre-noi main,
 body.page-despre-noi footer {
   position: relative;
   z-index: 1;
-}
-
-/* Mobil: iOS/Safari nu iubește "fixed" la background => îl trecem pe scroll
-   dar păstrăm aceeași scalare (cover) */
-@media (max-width: 820px) {
-
-  body.page-home,
-  body.page-blog,
-  body.page-contact,
-  body.page-despre-noi {
-    background-attachment: scroll;
-    /* doar pe mobil */
-    background-position: center top;
-  }
 }

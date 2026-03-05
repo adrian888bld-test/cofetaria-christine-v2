@@ -65,27 +65,29 @@
     <main>
         <br>
         <!-- HERO -->
-        <section class="section">
+        <section class="section section--hero">
             <div class="container">
                 <div class="section__head">
                     <h2>Produse</h2>
-                    <p>
-
-                    </p>
-
-                    <div class="category-nav" aria-label="Categorii produse">
-                        <a class="chip" href="#platouri-miniprajituri">Platouri miniprăjituri</a>
-                        <a class="chip" href="#prajituri-torturi">Prăjituri & Torturi</a>
-                        <a class="chip" href="#patiserie">Patiserie</a>
-                        <a class="chip" href="#macarons">Macarons</a>
-                        <a class="chip" href="#inghetata">Înghețată artizanală</a>
-                        <a class="chip" href="#sezon">De sezon</a>
-                        <a class="chip" href="#copii">Desene pentru copii</a>
-                    </div>
+                    <p></p>
                 </div>
             </div>
         </section>
 
+        <!-- SUBMENIU STICKY (chips) -->
+        <div class="products-subnav" role="navigation" aria-label="Categorii produse">
+            <div class="container products-subnav__inner">
+                <div class="category-nav">
+                    <a class="chip" href="#platouri-miniprajituri">Platouri miniprăjituri</a>
+                    <a class="chip" href="#prajituri-torturi">Prăjituri & Torturi</a>
+                    <a class="chip" href="#patiserie">Patiserie</a>
+                    <a class="chip" href="#macarons">Macarons</a>
+                    <a class="chip" href="#inghetata">Înghețată artizanală</a>
+                    <a class="chip" href="#sezon">De sezon</a>
+                    <a class="chip" href="#copii">Desene pentru copii</a>
+                </div>
+            </div>
+        </div>
         <!-- 1. PLATOURI -->
         <section id="platouri-miniprajituri" class="category">
             <div class="container">
@@ -1009,37 +1011,123 @@
         </div>
 
         <div class="cookie__actions">
-            <button class="cookie__btn cookie__btn--ghost" id="cookieReject" type="button">
-                Doar admir
-            </button>
-            <button class="cookie__btn" id="cookieAccept" type="button">
-                Accept experiența
-            </button>
+            <button class="cookie__btn cookie__btn--ghost" id="cookieReject" type="button">Doar admir</button>
+            <button class="cookie__btn" id="cookieAccept" type="button">Accept experiența</button>
         </div>
     </div>
-
     <script>
-        (function () {
-            const KEY = "cc_consent_v1";
-            const bar = document.getElementById("cookie");
-            const accept = document.getElementById("cookieAccept");
-            const reject = document.getElementById("cookieReject");
+        (() => {
+            const box = document.getElementById('cookie');
+            if (!box) return;
 
-            if (!bar) return;
+            const acceptBtn = document.getElementById('cookieAccept');
+            const rejectBtn = document.getElementById('cookieReject');
 
-            const saved = localStorage.getItem(KEY);
-            if (saved === "accepted" || saved === "rejected") {
-                bar.style.display = "none";
+            const KEY = 'cc_consent_v1';
+
+            // dacă e deja ales, ascunde bannerul
+            if (localStorage.getItem(KEY)) {
+                box.style.display = 'none';
                 return;
             }
 
-            function setConsent(value) {
-                localStorage.setItem(KEY, value);
-                bar.style.display = "none";
+            const close = (val) => {
+                localStorage.setItem(KEY, val); // "accept" sau "reject"
+                box.style.display = 'none';
+            };
+
+            if (acceptBtn) acceptBtn.addEventListener('click', () => close('accept'));
+            if (rejectBtn) rejectBtn.addEventListener('click', () => close('reject'));
+        })();
+    </script>
+
+    <script>
+        (() => {
+            // rulează doar dacă există submeniul (nu ne mai bazăm pe class pe body)
+            const header = document.querySelector('.header');
+            const subnav = document.querySelector('.products-subnav');
+            const nav = subnav ? subnav.querySelector('.category-nav') : null;
+            if (!header || !subnav || !nav) return;
+
+            const links = Array.from(nav.querySelectorAll('a.chip[href^="#"]'));
+            if (!links.length) return;
+
+            // ia doar secțiunile care chiar există
+            const sections = links
+                .map(a => document.querySelector(a.getAttribute('href')))
+                .filter(Boolean);
+
+            if (!sections.length) return;
+
+            const getOffset = () => {
+                const h = header.getBoundingClientRect().height || 0;
+                const s = subnav.getBoundingClientRect().height || 0;
+                return Math.round(h + s + 12);
+            };
+
+            const setActive = (id) => {
+                links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+
+                // glisează ca să se vadă butonul activ (mai ales pe mobil)
+                const active = links.find(a => a.classList.contains('is-active'));
+                if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            };
+
+            // CLICK: scroll cu offset
+            links.forEach(a => {
+                a.addEventListener('click', (e) => {
+                    const target = document.querySelector(a.getAttribute('href'));
+                    if (!target) return;
+
+                    e.preventDefault();
+                    const y = target.getBoundingClientRect().top + window.pageYOffset - getOffset();
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+
+                    if (target.id) {
+                        setActive(target.id);
+                        history.replaceState(null, '', '#' + target.id);
+                    }
+                });
+            });
+
+            // SCROLL SPY (mai stabil decât IntersectionObserver când ai sticky + blur + schimbări)
+            let ticking = false;
+
+            const updateActiveOnScroll = () => {
+                ticking = false;
+                const offset = getOffset();
+
+                // alegem ultima secțiune care a trecut de “linia” de sub header+subnav
+                let current = sections[0];
+                for (const sec of sections) {
+                    const top = sec.getBoundingClientRect().top - offset;
+                    if (top <= 6) current = sec;
+                    else break;
+                }
+
+                if (current && current.id) setActive(current.id);
+            };
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(updateActiveOnScroll);
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', () => {
+                updateActiveOnScroll();
+            });
+
+            // la load
+            if (location.hash) {
+                const el = document.querySelector(location.hash);
+                if (el && el.id) setActive(el.id);
+            } else if (sections[0] && sections[0].id) {
+                setActive(sections[0].id);
             }
 
-            accept && accept.addEventListener("click", () => setConsent("accepted"));
-            reject && reject.addEventListener("click", () => setConsent("rejected"));
+            updateActiveOnScroll();
         })();
     </script>
 </body>
