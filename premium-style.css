@@ -922,463 +922,197 @@ body.page-contact .address-actions button.btn:hover * {
 }
 
 /* ==========================================================
-   PRODUSE — Sticky chips (DOAR butoanele, fără bandă)
-   Pune ULTIMUL în premium-style.css
+   SUBMENIU (chips) — Produse + Evenimente (CURAT, IDENTIC)
+   - sticky sub header
+   - fără bandă / fără blur
+   - activ: doar subliniere fină
+   - mobile: 1 rând cu scroll orizontal
    ========================================================== */
 
-/* 0) Offset corect pentru header-ul tău (logo mare) — DOAR pe Produse */
-body.page-produse {
-    --produse-sticky-top: 138px;
+/* 1) Reglaj simplu: aici controlezi DISTANȚA dintre TITLU și SUBMENIU
+   (în loc să pui margin-bottom pe h2)
+   => crește/scade valoarea asta */
+body.page-produse .section--hero,
+body.page-evenimente .section--hero {
+    padding-bottom: 12px !important;
+    /* <- AICI modifici distanța (ex: 6px / 10px / 18px) */
 }
 
-/* desktop */
-
-@media (max-width: 980px) {
-    body.page-produse {
-        --produse-sticky-top: 92px;
-    }
-
-    /* mobil */
-}
-
-/* 1) Sticky nu merge dacă un părinte are overflow ascuns — fix local */
-body.page-produse .section,
-body.page-produse .section .container,
-body.page-produse .section__head {
-    overflow: visible !important;
-}
-
-/* 2) Bara cu chips: sticky + TRANSPARENT (fără bandă) */
-body.page-produse .category-nav {
+/* 2) Bara submeniului: sticky, transparent, fără bandă */
+body.page-produse .products-subnav,
+body.page-evenimente .products-subnav {
     position: sticky !important;
-    top: var(--produse-sticky-top) !important;
-    z-index: 2000 !important;
+    top: 120px !important;
+    /* tu ai zis că 120px îți e perfect */
+    z-index: 3000 !important;
 
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
 
-    padding: 10px 0 14px !important;
-    /* doar spațiu, fără fundal */
-    margin: 18px 0 28px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
+/* dacă “banda” venea din pseudo-elemente */
+body.page-produse .products-subnav::before,
+body.page-produse .products-subnav::after,
+body.page-evenimente .products-subnav::before,
+body.page-evenimente .products-subnav::after {
+    content: none !important;
+}
+
+/* 3) Inner: fără padding extra ca să fie identic */
+body.page-produse .products-subnav__inner,
+body.page-evenimente .products-subnav__inner {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* 4) Rândul de chips (desktop) */
+body.page-produse .products-subnav .category-nav,
+body.page-evenimente .products-subnav .category-nav {
     display: flex !important;
     gap: 10px !important;
     flex-wrap: wrap !important;
+    align-items: center !important;
+
+    /* “aer” mic între bară și restul conținutului */
+    padding: 6px 0 10px !important;
+    margin: 0 !important;
 }
 
-/* 3) Ca să nu stea lipită “urât” de header când e sticky */
-body.page-produse .category-nav::before {
-    content: "";
-    position: absolute;
-    inset: -12px 0 auto 0;
-    height: 12px;
-    background: transparent;
-}
+/* 5) Chip (identic pe ambele pagini) */
+body.page-produse .products-subnav .chip,
+body.page-evenimente .products-subnav .chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-/* PRODUSE – elimină banda din spatele chips */
-body.page-produse .section__head {
-    background: transparent !important;
-    border: none !important;
+    padding: 9px 14px !important;
+    border-radius: 999px !important;
+
+    border: 1px solid rgba(74, 45, 34, .18) !important;
+    background: rgba(255, 255, 255, .92) !important;
+    /* opac, cum ai vrut */
+    color: var(--text) !important;
+
+    text-decoration: none !important;
+    font-weight: 600 !important;
+
+    /* IMPORTANT: bordura să NU “dispară” la hover */
     box-shadow: none !important;
-    padding-bottom: 0 !important;
+
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease !important;
 }
 
-/* asigură că nici wrapperul nu are fundal */
-body.page-produse .section__head .category-nav {
-    background: transparent !important;
+body.page-produse .products-subnav .chip:hover,
+body.page-evenimente .products-subnav .chip:hover {
+    transform: translateY(-1px) !important;
+    border-color: rgba(210, 162, 37, .35) !important;
+    box-shadow: 0 10px 22px rgba(16, 10, 6, .06) !important;
 }
 
-/* PRODUSE – KILL banda din spatele chips (oricine ar fi vinovatul) */
-body.page-produse .section,
-body.page-produse .section .container,
-body.page-produse .section__head,
-body.page-produse .section__head .category-nav {
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-/* dacă banda e făcută din pseudo-element */
-body.page-produse .section__head::before,
-body.page-produse .section__head::after,
-body.page-produse .category-nav::before,
-body.page-produse .category-nav::after {
-    content: none !important;
-}
-
-/* PRODUSE — scoate “banda” din HERO (doar pe pagina Produse) */
-body.page-produse .section--hero,
-body.page-produse .section--hero .container,
-body.page-produse .section--hero .section__head {
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-/* dacă banda e din pseudo-elemente (super des la “linii”/“benzi”) */
-body.page-produse .section--hero::before,
-body.page-produse .section--hero::after,
-body.page-produse .section--hero .container::before,
-body.page-produse .section--hero .container::after,
-body.page-produse .section--hero .section__head::before,
-body.page-produse .section--hero .section__head::after {
-    content: none !important;
-}
-
-/* ==========================================================
-   PRODUSE — submeniu sticky FĂRĂ bandă (rămân doar chips)
-   ========================================================== */
-body.page-produse .products-subnav,
-body.page-produse .products-subnav .products-subnav__inner {
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-}
-
-/* dacă “banda” vine din pseudo-elemente */
-body.page-produse .products-subnav::before,
-body.page-produse .products-subnav::after,
-body.page-produse .products-subnav .products-subnav__inner::before,
-body.page-produse .products-subnav .products-subnav__inner::after {
-    content: none !important;
-}
-
-/* sticky corect: să NU intre sub header */
-body.page-produse .products-subnav {
-    position: sticky !important;
-    top: calc(var(--header-offset, 84px) + 10px) !important;
-    /* 10px spațiu sub header */
-    z-index: 200 !important;
-}
-
-/* un pic de aer sub HERO, ca să nu fie lipit */
-body.page-produse .section--hero {
-    padding-bottom: 10px !important;
-}
-
-body.page-produse .products-subnav {
-    margin-top: 10px !important;
-}
-
-/* ==================================================
-   PRODUSE — compactare spații (hero → chips → produse)
-   ================================================== */
-
-/* mai puțin spațiu sub titlul "Produse" */
-body.page-produse .section--hero {
-    padding-bottom: 0px !important;
-}
-
-/* submeniul mai aproape de titlu */
-body.page-produse .products-subnav {
-    margin-top: 0px !important;
-    margin-bottom: 2px !important;
-}
-
-/* prima categorie mai aproape de chips */
-body.page-produse .category {
-    padding-top: 0px !important;
-}
-
-/* PRODUSE — sticky chips: FĂRĂ OPACITATE / FĂRĂ BLUR */
-body.page-produse .products-subnav {
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: 0 !important;
-    box-shadow: none !important;
-}
-
-/* și inner-ul (containerul din subnav) */
-body.page-produse .products-subnav__inner {
-    background: transparent !important;
-}
-
-body.page-produse .chip {
-    background: rgba(255, 255, 255, 0.92) !important;
-    /* sau 1 pentru complet opac */
-}
-
-/* PRODUSE — offset corect pentru ancore (chips menu) */
-body.page-produse .category {
-    scroll-margin-top: 200px;
-}
-
-/* PRODUSE — scoate liniile dintre categorii */
-body.page-produse .category {
-    border: none !important;
-}
-
-body.page-produse .category+.category {
-    border-top: none !important;
-}
-
-/* dacă vine din carduri */
-body.page-produse .product-card__meta {
-    border-top: none !important;
-}
-
-/* ==================================================
-   PRODUSE — linie elegantă fade sub fiecare categorie
-   ================================================== */
-
-body.page-produse .category__head h2 {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 8px;
-}
-
-body.page-produse .category__head h2::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 120px;
-    height: 2px;
-
-    background: linear-gradient(90deg,
-            var(--gold) 0%,
-            var(--gold) 40%,
-            rgba(210, 162, 37, 0.35) 70%,
-            rgba(210, 162, 37, 0) 100%);
-}
-
-/* ===============================
-   PRODUSE — SUBMENIU MOBIL: 1 RÂND (CIocan)
-   =============================== */
-@media (max-width: 900px) {
-
-    /* bara sticky să fie complet transparentă */
-    body.page-produse .products-subnav {
-        position: sticky;
-        top: 72px;
-        z-index: 3000;
-        background: transparent !important;
-        border: 0 !important;
-        box-shadow: none !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-
-    body.page-produse .products-subnav__inner {
-        padding: 6px 0 !important;
-    }
-
-    /* IMPORTANT: nu flex -> 1 linie garantat */
-    body.page-produse .category-nav {
-        display: block !important;
-        white-space: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch;
-        padding: 6px 2px 10px !important;
-        scrollbar-width: none;
-    }
-
-    body.page-produse .category-nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    body.page-produse .chip {
-        display: inline-flex !important;
-        vertical-align: middle;
-        white-space: nowrap !important;
-
-        font-size: 12px;
-        padding: 8px 10px;
-        border-radius: 999px;
-
-        margin-right: 10px;
-        /* în loc de gap */
-        max-width: 70vw;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    body.page-produse .chip:last-child {
-        margin-right: 2px;
-    }
-
-    /* ca să nu-ți ajungă titlul lipit sub meniu după click */
-    body.page-produse .category {
-        scroll-margin-top: 150px;
-    }
-}
-
-/* offset pentru scroll din submeniu */
-.page-produse .category {
-    scroll-margin-top: 170px;
-}
-
-.products-subnav .category-nav {
-    scroll-behavior: smooth;
-}
-
-/* Chips active (vizual) */
-.products-subnav .chip.is-active {
-    border-color: rgba(210, 162, 37, .55);
-    box-shadow: 0 10px 24px rgba(16, 10, 6, .10);
-}
-
-/* Submeniul să NU fie opac (cum ai vrut) */
-.products-subnav {
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border: 0 !important;
-    box-shadow: none !important;
-}
-
-/* Scroll smooth pentru glisarea submeniului */
-.products-subnav .category-nav {
-    scroll-behavior: smooth;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-}
-
-.products-subnav .category-nav::-webkit-scrollbar {
-    display: none;
-}
-
-/* ================================
-   PRODUSE — chip activ: subliniere fină, fără “inel” gros
-   (desktop + mobile)
-   ================================ */
-
-/* scoatem accentul agresiv (outline / border dublu / shadow) */
-.page-produse .category-nav .chip.is-active {
+/* 6) Activ: doar subliniere fină (fără “inel” gros / fără glow) */
+body.page-produse .products-subnav .chip.is-active,
+body.page-evenimente .products-subnav .chip.is-active {
     outline: none !important;
     box-shadow: none !important;
-    border-color: rgba(60, 40, 28, 0.22) !important;
-    /* ca restul */
-    position: relative;
+    border-color: rgba(74, 45, 34, .18) !important;
+    position: relative !important;
+    font-weight: 650 !important;
 }
 
-/* subliniere “pierdută” (gradient soft) */
-.page-produse .category-nav .chip.is-active::after {
-    content: "";
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 6px;
-    height: 2px;
-    border-radius: 999px;
+body.page-produse .products-subnav .chip.is-active::after,
+body.page-evenimente .products-subnav .chip.is-active::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 14px !important;
+    right: 14px !important;
+    bottom: 6px !important;
+    height: 2px !important;
+    border-radius: 999px !important;
+
     background: linear-gradient(90deg,
             rgba(210, 162, 37, 0) 0%,
             rgba(210, 162, 37, .55) 35%,
             rgba(210, 162, 37, .55) 65%,
-            rgba(210, 162, 37, 0) 100%);
-    opacity: .85;
+            rgba(210, 162, 37, 0) 100%) !important;
+    opacity: .85 !important;
 }
 
-/* opțional: un mic “boost” de text, dar fără bold agresiv */
-.page-produse .category-nav .chip.is-active {
-    font-weight: 650;
-    /* în loc de 800 */
+/* 7) Click pe butoane / ancore: să NU intre sub header + submeniu */
+body.page-produse section[id],
+body.page-produse .category[id],
+body.page-evenimente section[id],
+body.page-evenimente .category[id] {
+    scroll-margin-top: 200px !important;
+    /* dacă ți-e prea mult: 180 / 190 */
 }
 
-/* HOME – reduce spațiul dintre text și carduri */
-.page-home .section {
-    padding: 24px 0;
+/* 8) Scoate liniile dintre categorii (dacă există) */
+body.page-produse .category,
+body.page-evenimente .category {
+    border: none !important;
 }
 
-/* HOME – distanță mai mare sub titlu */
-.page-home .section__head h1 {
-    margin-bottom: 36px;
+/* 9) Mobile: 1 rând cu scroll orizontal */
+@media (max-width: 900px) {
+
+    body.page-produse .products-subnav,
+    body.page-evenimente .products-subnav {
+        top: 100px !important;
+    }
+
+    body.page-produse .products-subnav .category-nav,
+    body.page-evenimente .products-subnav .category-nav {
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+    }
+
+    body.page-produse .products-subnav .category-nav::-webkit-scrollbar,
+    body.page-evenimente .products-subnav .category-nav::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    body.page-produse .products-subnav .chip,
+    body.page-evenimente .products-subnav .chip {
+        white-space: nowrap !important;
+    }
 }
 
-/* Intro (default: text normal, fără animație) */
-.section__head .intro {
-    display: inline-block;
-    white-space: nowrap;
-    margin-right: 6px;
-    font-weight: 400;
-    opacity: .85;
+/* =========================
+   HOME (index) — REPAIR ONLY
+   pune ULTIMUL în premium-style.css
+   ========================= */
 
-    overflow: visible;
-    max-width: none;
-    border-right: 0;
-}
-
-/* HOME — HERO premium (fără animații) */
 body.page-home .section__head {
     max-width: 760px;
-    /* nu mai e lat cât containerul => arată editorial */
 }
 
 body.page-home .section__head h1 {
-    margin-bottom: 18px;
-    /* spațiu frumos între titlu și text */
+    margin: 0 0 18px;
+    /* distanța sub titlu */
+    padding-bottom: 14px;
+    /* păstrează linia */
 }
 
 body.page-home .section__head p {
-    margin-top: 0;
+    margin: 0 0 26px;
+    /* “aerisirea” textului */
+    line-height: 1.75;
     max-width: 72ch;
-    /* rânduri elegante, nu foarte lungi */
-    line-height: 1.7;
+    /* text mai “organizat” */
 }
 
-/* Background texturat pentru paginile principale */
-body.page-produse,
-body.page-evenimente,
-body.page-comanda {
-    background: #fbf3e8 url("assets/img/bg-paper.jpg") repeat;
-}
-
-body.page-produse .products-subnav,
-body.page-evenimente .products-subnav {
-    margin-top: 0px;
-}
-
-/* ==================================================
-   TITLURI SUBLINIATE (fade) — Produse + Evenimente
-   (pune ULTIMUL în premium-style.css)
-   ================================================== */
-
-/* 1) Dăm ancoră corectă titlurilor (ALT-FEL linia poate “fugi”) */
-body.page-produse .category__head h2,
-body.page-produse .category__head h3,
-body.page-evenimente .category__head h2,
-body.page-evenimente .category__head h3 {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 10px;
-    /* ajustezi 8–12px cum îți place */
-}
-
-/* 2) Linia “pierdută” */
-body.page-produse .category__head h2::after,
-body.page-produse .category__head h3::after,
-body.page-evenimente .category__head h2::after,
-body.page-evenimente .category__head h3::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    width: 140px;
-    /* poți 120 / 140 / 160 */
-    height: 2px;
-
-    background: linear-gradient(90deg,
-            var(--gold) 0%,
-            rgba(210, 162, 37, 0.70) 45%,
-            rgba(210, 162, 37, 0.25) 75%,
-            rgba(210, 162, 37, 0) 100%);
-    opacity: .8;
-    border-radius: 2px;
-    pointer-events: none;
-}
-
-/* Evenimente – elimină liniile dintre categorii */
-body.page-evenimente .category {
-    border-top: none;
+/* dacă ai vrut “Bine ai venit la” mai soft */
+body.page-home .h1-soft {
+    opacity: .72;
+    font-weight: 500;
+    filter: blur(.35px);
 }

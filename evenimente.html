@@ -77,7 +77,7 @@
             </div>
         </section>
 
-        <!-- SUBMENIU (chips) -->
+        <!-- SUBMENIU STICKY (chips) - IDENTIC cu Produse -->
         <div class="products-subnav" role="navigation" aria-label="Categorii evenimente">
             <div class="container products-subnav__inner">
                 <div class="category-nav">
@@ -86,6 +86,7 @@
                     <a class="chip" href="#tort-botez">Tort botez</a>
                 </div>
             </div>
+        </div>
         </div>
 
         <!-- CANDY BAR -->
@@ -517,6 +518,91 @@
 
             accept && accept.addEventListener("click", () => setConsent("accepted"));
             reject && reject.addEventListener("click", () => setConsent("rejected"));
+        })();
+    </script>
+    <script>
+        (() => {
+            // rulează pe Produse + Evenimente
+            if (!document.body.classList.contains('page-produse') &&
+                !document.body.classList.contains('page-evenimente')) return;
+
+            const header = document.querySelector('.header');
+            const subnav = document.querySelector('.products-subnav');
+            const nav = subnav ? subnav.querySelector('.category-nav') : null;
+            const links = nav ? Array.from(nav.querySelectorAll('a.chip[href^="#"]')) : [];
+            const sections = links
+                .map(a => document.querySelector(a.getAttribute('href')))
+                .filter(Boolean);
+
+            if (!header || !subnav || !nav || !links.length || !sections.length) return;
+
+            const getOffset = () => {
+                const h = header.getBoundingClientRect().height || 0;
+                const s = subnav.getBoundingClientRect().height || 0;
+                return Math.round(h + s + 14); // spațiu mic “aer”
+            };
+
+            const setActive = (id) => {
+                links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+                const active = links.find(a => a.classList.contains('is-active'));
+                if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            };
+
+            // click -> scroll cu offset real
+            links.forEach(a => {
+                a.addEventListener('click', (e) => {
+                    const target = document.querySelector(a.getAttribute('href'));
+                    if (!target) return;
+                    e.preventDefault();
+
+                    const y = target.getBoundingClientRect().top + window.pageYOffset - getOffset();
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+
+                    if (target.id) {
+                        setActive(target.id);
+                        history.replaceState(null, '', '#' + target.id);
+                    }
+                });
+            });
+
+            let currentId = null;
+
+            const makeObserver = () => {
+                const top = getOffset();
+                return new IntersectionObserver((entries) => {
+                    const visible = entries
+                        .filter(en => en.isIntersecting)
+                        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+                    if (!visible.length) return;
+                    const id = visible[0].target.id;
+                    if (id && id !== currentId) {
+                        currentId = id;
+                        setActive(id);
+                    }
+                }, {
+                    root: null,
+                    rootMargin: `-${top}px 0px -65% 0px`,
+                    threshold: [0, 0.1, 0.2]
+                });
+            };
+
+            let observer = makeObserver();
+            sections.forEach(sec => observer.observe(sec));
+
+            window.addEventListener('resize', () => {
+                observer.disconnect();
+                observer = makeObserver();
+                sections.forEach(sec => observer.observe(sec));
+            });
+
+            // init
+            if (location.hash) {
+                const el = document.querySelector(location.hash);
+                if (el && el.id) setActive(el.id);
+            } else if (sections[0] && sections[0].id) {
+                setActive(sections[0].id);
+            }
         })();
     </script>
 </body>

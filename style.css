@@ -284,7 +284,7 @@ h3 {
 
 .section__head h1,
 .section__head h2 {
-  margin: 0 0 6px;
+  margin: 0 0 40px;
   font-size: 28px;
   letter-spacing: -.01em;
   position: relative;
@@ -1650,4 +1650,15 @@ body.page-despre-noi main,
 body.page-despre-noi footer {
   position: relative;
   z-index: 1;
+}
+
+/* HOME — "Bine ai venit la" mai soft */
+body.page-home .section__head .intro {
+  opacity: 10;
+  /* mai șters */
+  font-weight: 500;
+}
+
+.page-home .hero {
+  padding-bottom: 0px;
 }
