@@ -980,7 +980,7 @@ body.page-evenimente .products-subnav .category-nav {
     align-items: center !important;
 
     /* “aer” mic între bară și restul conținutului */
-    padding: 6px 0 10px !important;
+    padding: 0px 0 10px !important;
     margin: 0 !important;
 }
 
@@ -1006,13 +1006,6 @@ body.page-evenimente .products-subnav .chip {
     box-shadow: none !important;
 
     transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease !important;
-}
-
-body.page-produse .products-subnav .chip:hover,
-body.page-evenimente .products-subnav .chip:hover {
-    transform: translateY(-1px) !important;
-    border-color: rgba(210, 162, 37, .35) !important;
-    box-shadow: 0 10px 22px rgba(16, 10, 6, .06) !important;
 }
 
 /* 6) Activ: doar subliniere fină (fără “inel” gros / fără glow) */
@@ -1115,4 +1108,39 @@ body.page-home .h1-soft {
     opacity: .72;
     font-weight: 500;
     filter: blur(.35px);
+}
+
+/* CHIPS — FIX FINAL: fără lift, fără umbră mare, contur stabil */
+body.page-produse .products-subnav .chip,
+body.page-evenimente .products-subnav .chip {
+    box-shadow: none !important;
+    transform: none !important;
+    filter: none !important;
+    outline: none !important;
+
+    border: 1px solid rgba(60, 40, 28, .22) !important;
+    border-top-color: rgba(60, 40, 28, .22) !important;
+    border-right-color: rgba(60, 40, 28, .22) !important;
+    border-bottom-color: rgba(60, 40, 28, .22) !important;
+    border-left-color: rgba(60, 40, 28, .22) !important;
+
+    background: rgba(255, 255, 255, .78) !important;
+}
+
+body.page-produse .products-subnav .chip:hover,
+body.page-evenimente .products-subnav .chip:hover {
+    box-shadow: none !important;
+    /* <- NU mai apare umbra aia mare */
+    transform: none !important;
+    /* <- NU mai “umflă/lift” */
+    filter: none !important;
+
+    background: rgba(255, 255, 255, .92) !important;
+
+    border-color: rgba(210, 162, 37, .55) !important;
+    /* doar culoarea se schimbă */
+    border-top-color: rgba(210, 162, 37, .55) !important;
+    border-right-color: rgba(210, 162, 37, .55) !important;
+    border-bottom-color: rgba(210, 162, 37, .55) !important;
+    border-left-color: rgba(210, 162, 37, .55) !important;
 }
